@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  height: 70px;
+}
+
+.logo-img {
+  height: 70px;
+  height: inherit;
+}
+
+.glass {
+  color: var(--orange);
+  position: relative;
+}
+
+.glass-empty {
+  color: var(--red);
+}
+
+.glass-full {
+  color: var(--green);
+}
+
+.glass-quant {
+  position: absolute;
+  color: #fff;
+  bottom: 11px;
+  font-size: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 50px;
+  }
+}

@@ -1,0 +1,54 @@
+.menu {
+  width: 100%;
+  position: fixed;
+  background-color: transparent;
+  bottom: 0;
+  padding: 24px;
+  z-index: 1;
+}
+.menu::after {
+  content: " ";
+  position: absolute;
+  width: 100%;
+  height: 55%;
+  background-color: var(--orange);
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.menu-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-item {
+  height: 35px;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  box-sizing: content-box;
+  border-radius: 50%;
+  background-color: var(--orange);
+  padding: 6px;
+  border: 4px solid var(--orange);
+  transition: all 200ms;
+}
+
+.menu-item--selected {
+  border: 4px solid #fff;
+  transform: scale(1.3);
+}
+
+.menu-button {
+  background-color: transparent;
+  border: none;
+}
+
+.menu-list-icon {
+  color: #fff;
+}
+
+.menu-list-text {
+  color: #fff;
+}

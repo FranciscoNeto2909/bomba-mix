@@ -1,0 +1,15 @@
+* {
+  font-family: poppins Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --orange: #f67d15;
+  --yellow: #f0ba09;
+  --red: #d3152e;
+  --green: #5b9c4b;
+}
