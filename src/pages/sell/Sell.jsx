@@ -7,8 +7,8 @@ import {
   wheys,
 } from "../../data/data";
 import { SiBuymeacoffee } from "react-icons/si";
-import "./sell.css";
 import { useState } from "react";
+import "./sell.css";
 
 export default function Sell() {
   const [glassId, setGlassId] = useState(undefined);
@@ -115,7 +115,7 @@ export default function Sell() {
       <h2 className="sell-title">Tamanhos</h2>
       <div className="sell-glasses">
         {glasses.map((glass, i) => (
-          <div className="glass">
+          <div className="glass" key={i}>
             <button
               onClick={() => handleSelectGlass(i, glass)}
               className={`glass-button ${i == glassId && "glass--selected"}`}
@@ -132,7 +132,7 @@ export default function Sell() {
       <h2 className="sell-title">Sabores</h2>
       <div className="sell-flavors">
         {flavores.map((flavor, i) => (
-          <div className="sell-flavor">
+          <div className="sell-flavor" key={i}>
             <button
               onClick={() => handleSelectFlavor(i, flavor)}
               className="flavor-button"
@@ -149,7 +149,7 @@ export default function Sell() {
       <h2 className="sell-title">Coberturas</h2>
       <div className="sell-topping">
         {toppings.map((top, i) => (
-          <div className="topping">
+          <div className="topping" key={i}>
             <button
               onClick={() => handleSelectTopping(i, top)}
               className="topping-button"
@@ -166,7 +166,7 @@ export default function Sell() {
       <h2 className="sell-title">Acompanha</h2>
       <div className="sell-acommpaniments">
         {accompaniments.map((item, i) => (
-          <div className="acommpaniment">
+          <div className="acommpaniment" key={i}>
             <button
               onClick={() => handleSelectAcompaniment(i, item)}
               className="acommpaniment-button"
@@ -185,7 +185,7 @@ export default function Sell() {
       <h2 className="sell-title">Whey</h2>
       <div className="sell-whey">
         {wheys.map((item, i) => (
-          <div className="whey">
+          <div className="whey" key={i}>
             <button
               onClick={() => handleSelectWhey(i, item)}
               className="whey-button"
@@ -202,7 +202,7 @@ export default function Sell() {
       <h2 className="sell-title">Combos</h2>
       <div className="sell-combos">
         {combos.map((combo, i) => (
-          <div className="combo">
+          <div className="combo" key={i}>
             <button
               onClick={() => handleSelectCombo(i, combo)}
               className="combo-button"

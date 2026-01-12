@@ -11,6 +11,12 @@
   height: inherit;
 }
 
+.logo-name {
+  color: var(--orange);
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .glass {
   color: var(--orange);
   position: relative;

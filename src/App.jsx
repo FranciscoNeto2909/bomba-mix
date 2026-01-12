@@ -5,7 +5,9 @@ import { SiBuymeacoffee } from "react-icons/si";
 import "./App.css";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Sell from "./pages/vender/Sell";
+import Sell from "./pages/sell/Sell";
+import Summary from "./pages/summary/Summary";
+import Inventory from "./pages/inventory/Inventory";
 
 function App() {
   const [glassQuant, setGlassQuant] = useState(30);
@@ -15,7 +17,7 @@ function App() {
         <div className="logo">
           <img className="logo-img" src={logo} alt="" />
         </div>
-        <div className="name">BOMBAMIX SGA</div>
+        <div className="logo-name">BOMBAMIX SGA</div>
         {window.innerWidth > 768 && <Nav />}
         <div className="glass">
           <span className="glass-quant">{glassQuant}</span>
@@ -23,9 +25,9 @@ function App() {
         </div>
       </div>
       <Routes>
-        <Route path="fechamento" element={<></>} />
+        <Route path="fechamento" element={<Summary />} />
         <Route path="/" element={<Sell />} />
-        <Route path="estoque" element={<></>} />
+        <Route path="estoque" element={<Inventory />} />
       </Routes>
       {window.innerWidth < 768 && <Menu />}
     </>
