@@ -14,6 +14,10 @@ import wheyM from "../assets/wheyM.png";
 import amendoim from "../assets/amendoim.jpg";
 import pacoca from "../assets/pacoca.jpg";
 import menta from "../assets/menta.jpg";
+import explosao from "../assets/explosao.jpg";
+import turbo from "../assets/turbo.jpg";
+import power from "../assets/power.jpg";
+import bomba from "../assets/bomba.png";
 
 export const glasses = [
   { size: "300ml", price: 7 },
@@ -36,26 +40,26 @@ export const flavores = [
   { name: "Ninho com Ovomaltine", img: ninho },
 ];
 
-export const wheyFlavor = [
+export const wheys = [
   { name: "Whey com Chocolate", img: wheyC },
   { name: "Whey com Morango", img: wheyM },
 ];
 
-export const topping = [
+export const toppings = [
   flavores[4],
   flavores[6],
   { name: "Menta", img: menta },
   flavores[9],
 ];
 
-export const accompaniment = [
+export const accompaniments = [
   { name: "Amendoim", img: amendoim },
   { name: "Paçoca", img: pacoca },
 ];
 
 export const combos = [
-  { name: "Explosão", price: 16 },
-  { name: "Turbo", price: 17 },
-  { name: "Power", price: 20 },
-  { name: "BombaMix", price: 21 },
+  { name: "Explosão", img: explosao, price: 16 },
+  { name: "Turbo", img: turbo, price: 17 },
+  { name: "Power", img: power, price: 20 },
+  { name: "BombaMix", img: bomba, price: 21 },
 ];

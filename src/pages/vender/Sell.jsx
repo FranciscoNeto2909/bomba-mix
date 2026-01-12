@@ -1,26 +1,30 @@
 import {
-  accompaniment,
+  accompaniments,
+  combos,
   flavores,
   glasses,
-  topping,
-  wheyFlavor,
+  toppings,
+  wheys,
 } from "../../data/data";
 import { SiBuymeacoffee } from "react-icons/si";
 import "./sell.css";
 import { useState } from "react";
 
 export default function Sell() {
-  const [glassId, setGlassId] = useState();
-  const [glassSize, setGlassSize] = useState();
-  const [glassPrice, setGlassPrice] = useState();
-  const [flavorId, setFlavorId] = useState();
-  const [flavor, setFlavor] = useState();
-  const [topId, setTopId] = useState();
-  const [top, setTop] = useState();
-  const [acompId, setAcompId] = useState();
-  const [acomp, setAcomp] = useState();
-  const [wheyId, setWheyId] = useState();
-  const [whey, setWhey] = useState();
+  const [glassId, setGlassId] = useState(undefined);
+  const [glassSize, setGlassSize] = useState(undefined);
+  const [glassPrice, setGlassPrice] = useState(undefined);
+  const [flavorId, setFlavorId] = useState(undefined);
+  const [flavor, setFlavor] = useState(undefined);
+  const [topId, setTopId] = useState(undefined);
+  const [top, setTop] = useState(undefined);
+  const [acompId, setAcompId] = useState(undefined);
+  const [acomp, setAcomp] = useState(undefined);
+  const [wheyId, setWheyId] = useState(undefined);
+  const [whey, setWhey] = useState(undefined);
+  const [comboId, setComboId] = useState(undefined);
+  const [combo, setCombo] = useState(undefined);
+  const [order, setOrder] = useState(undefined);
 
   function handleSelectGlass(i, glass) {
     setGlassId(i);
@@ -29,23 +33,81 @@ export default function Sell() {
   }
 
   function handleSelectFlavor(i, flavor) {
-    setFlavorId(i);
-    setFlavor(flavor);
+    if (flavorId === i) {
+      setFlavorId(undefined);
+    } else {
+      setFlavorId(i);
+      setFlavor(flavor.name);
+      setCombo(undefined);
+      setComboId(undefined);
+    }
   }
 
   function handleSelectTopping(i, top) {
-    setTopId(i);
+    if (topId === i) {
+      setTopId(undefined);
+    } else setTopId(i);
     setTop(top.name);
   }
 
   function handleSelectAcompaniment(i, acomp) {
-    setAcompId(i);
-    setAcomp(acomp.name);
+    if (acompId == i) {
+      setAcompId(undefined);
+    } else {
+      setAcompId(i);
+      setAcomp(acomp.name);
+    }
   }
 
   function handleSelectWhey(i, item) {
-    setWheyId(i);
-    setWhey(item.name);
+    if (wheyId == i) {
+      setWheyId(undefined);
+    } else {
+      setWheyId(i);
+      setWhey(item.name);
+    }
+  }
+
+  function handleSelectCombo(i, combo) {
+    if (comboId === i) {
+      setComboId(undefined);
+    } else {
+      setCombo(combo);
+      setGlassPrice(combo.price);
+      setComboId(i);
+      setGlassId(undefined);
+      setGlassSize(undefined);
+      setFlavorId(undefined);
+      setFlavor(undefined);
+      setTopId(undefined);
+      setTop(undefined);
+      setAcompId(undefined);
+      setAcomp(undefined);
+      setWheyId(undefined);
+      setWhey(undefined);
+    }
+  }
+
+  function handleSetOrder() {
+    if (comboId !== undefined) {
+      setOrder({
+        pedido: `Combo ${combo.name}`,
+        valor: `R$:${combo.price},00`,
+      });
+      console.log(order);
+    } else if (flavorId !== undefined) {
+      setOrder({
+        pedido: `Vitamina de ${flavor}`,
+        copo: glassSize,
+        cobertura: top,
+        acompanha: acomp,
+        whey,
+        valor: `R$:${glassPrice},00`,
+      });
+      console.log(order);
+    } else {
+      console.log("Monte uma vitamina");
+    }
   }
 
   return (
@@ -72,7 +134,7 @@ export default function Sell() {
         {flavores.map((flavor, i) => (
           <div className="sell-flavor">
             <button
-              onClick={() => handleSelectFlavor(i, flavor.name)}
+              onClick={() => handleSelectFlavor(i, flavor)}
               className="flavor-button"
             >
               <img
@@ -86,10 +148,10 @@ export default function Sell() {
       </div>
       <h2 className="sell-title">Coberturas</h2>
       <div className="sell-topping">
-        {topping.map((top, i) => (
+        {toppings.map((top, i) => (
           <div className="topping">
             <button
-              onClick={() => handleSelectTopping(i, topping)}
+              onClick={() => handleSelectTopping(i, top)}
               className="topping-button"
             >
               <img
@@ -103,7 +165,7 @@ export default function Sell() {
       </div>
       <h2 className="sell-title">Acompanha</h2>
       <div className="sell-acommpaniments">
-        {accompaniment.map((item, i) => (
+        {accompaniments.map((item, i) => (
           <div className="acommpaniment">
             <button
               onClick={() => handleSelectAcompaniment(i, item)}
@@ -122,7 +184,7 @@ export default function Sell() {
       </div>
       <h2 className="sell-title">Whey</h2>
       <div className="sell-whey">
-        {wheyFlavor.map((item, i) => (
+        {wheys.map((item, i) => (
           <div className="whey">
             <button
               onClick={() => handleSelectWhey(i, item)}
@@ -137,8 +199,29 @@ export default function Sell() {
           </div>
         ))}
       </div>
-      <div className="sell-combos"></div>
-      <div className="sell-buttons"></div>
+      <h2 className="sell-title">Combos</h2>
+      <div className="sell-combos">
+        {combos.map((combo, i) => (
+          <div className="combo">
+            <button
+              onClick={() => handleSelectCombo(i, combo)}
+              className="combo-button"
+            >
+              <img
+                src={combo.img}
+                className={`combo-img ${comboId == i && "combo--selected"}`}
+                alt=""
+              />
+            </button>
+          </div>
+        ))}
+      </div>
+      <div className="sell-buttons">
+        <button className="button" onClick={handleSetOrder}>
+          Finalizar
+        </button>
+        <button className="button button--cancell">Cancelar</button>
+      </div>
     </div>
   );
 }
