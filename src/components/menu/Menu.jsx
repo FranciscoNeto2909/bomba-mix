@@ -18,7 +18,7 @@ export default function Menu() {
         </li>
         <li className={`menu-item ${route == "vender" && "menu-item--selected"}`}>
           <button className="menu-button" onClick={() => setRoute("vender")}>
-            <Link to={"/vender"}>
+            <Link to={"/"}>
               <SiBuymeacoffee className="menu-list-icon" size={35} />
             </Link>
           </button>

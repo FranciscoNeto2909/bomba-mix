@@ -1,0 +1,35 @@
+.sell {
+  max-width: 100vw;
+  margin: 52px 16px;
+}
+
+.sell-title {
+  font-size: 32px;
+  color: var(--orange);
+}
+
+.sell-glasses {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.sell-glass-button {
+  border: none;
+  background-color: transparent;
+  position: relative;
+  color: var(--orange);
+  padding: 8px 4px;
+  border-radius: 8px;
+}
+
+.sell-glass--selected {
+  background-color: var(--orange);
+  color: #fff;
+  transform: scale(1.1);
+  transition: all 300ms;
+}
+
+.sell-glass-texts {
+  font-weight: bold;
+}

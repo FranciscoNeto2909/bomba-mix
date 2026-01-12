@@ -5,6 +5,7 @@ import { SiBuymeacoffee } from "react-icons/si";
 import "./App.css";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import Sell from "./pages/vender/Sell";
 
 function App() {
   const [glassQuant, setGlassQuant] = useState(30);
@@ -22,9 +23,9 @@ function App() {
         </div>
       </div>
       <Routes>
-        <Route path="fechamento" element={<></>}/>
-        <Route path="vender" element={<></>}/>
-        <Route path="estoque" element={<></>}/>
+        <Route path="fechamento" element={<></>} />
+        <Route path="/" element={<Sell />} />
+        <Route path="estoque" element={<></>} />
       </Routes>
       {window.innerWidth < 768 && <Menu />}
     </>
