@@ -1,6 +1,6 @@
 .sell {
   max-width: 100vw;
-  margin: 52px 16px;
+  margin: 18px 16px 100px;
 }
 
 .sell-title {
@@ -11,10 +11,10 @@
 .sell-glasses {
   display: flex;
   justify-content: space-between;
-  margin-top: 32px;
+  margin: 32px 0;
 }
 
-.sell-glass-button {
+.glass-button {
   border: none;
   background-color: transparent;
   position: relative;
@@ -23,13 +23,60 @@
   border-radius: 8px;
 }
 
-.sell-glass--selected {
+.glass--selected {
   background-color: var(--orange);
   color: #fff;
   transform: scale(1.1);
   transition: all 300ms;
 }
 
-.sell-glass-texts {
+.glass-texts {
   font-weight: bold;
+}
+
+.sell-flavors,
+.sell-acommpaniments,
+.sell-whey {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 18px 0 32px;
+}
+
+.flavor-button,
+.acommpaniment-button,
+.whey-button {
+  border: none;
+  background-color: transparent;
+}
+
+.flavor-img,
+.topping-img,
+.acommpaniment-img,
+.whey-img {
+  border-radius: 12px;
+  border: 3px solid transparent;
+  height: 60px;
+  width: 60px;
+}
+
+.flavor--selected,
+.topping--selected,
+.acommpaniment--selected,
+.whey--selected {
+  border: 3px solid var(--orange);
+  transform: scale(1.1);
+  transition: all 300ms;
+}
+
+.sell-topping {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 18px 0 32px;
+}
+
+.topping-button {
+  border: none;
+  background-color: transparent;
 }

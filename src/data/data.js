@@ -36,7 +36,7 @@ export const flavores = [
   { name: "Ninho com Ovomaltine", img: ninho },
 ];
 
-export const whey = [
+export const wheyFlavor = [
   { name: "Whey com Chocolate", img: wheyC },
   { name: "Whey com Morango", img: wheyM },
 ];
