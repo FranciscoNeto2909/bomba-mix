@@ -30,10 +30,6 @@ function App() {
     });
   }
 
-  useEffect(() => {
-    console.log(sales);
-  }, [sales]);
-
   return (
     <>
       <div className="header">
