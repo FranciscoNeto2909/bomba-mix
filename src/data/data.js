@@ -20,10 +20,10 @@ import power from "../assets/power.jpg";
 import bomba from "../assets/bomba.png";
 
 export const glasses = [
-  { size: "300ml", price: 7 },
-  { size: "400ml", price: 8 },
-  { size: "500ml", price: 11 },
-  { size: "700ml", price: 15 },
+  { size: "300ml",iconS:55, price: 7 },
+  { size: "400ml",iconS:65, price: 8 },
+  { size: "500ml",iconS:70, price: 11 },
+  { size: "700ml",iconS:75, price: 15 },
 ];
 
 export const flavores = [
@@ -58,8 +58,8 @@ export const accompaniments = [
 ];
 
 export const combos = [
-  { name: "Explosão", img: explosao, price: 16 },
-  { name: "Turbo", img: turbo, price: 17 },
-  { name: "Power", img: power, price: 20 },
-  { name: "BombaMix", img: bomba, price: 21 },
+  { name: "Combo Explosão", img: explosao, price: 16 },
+  { name: "Combo Turbo", img: turbo, price: 17 },
+  { name: "Combo Power", img: power, price: 20 },
+  { name: "Combo BombaMix", img: bomba, price: 21 },
 ];
