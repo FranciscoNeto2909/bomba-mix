@@ -10,7 +10,7 @@ import { SiBuymeacoffee } from "react-icons/si";
 import { useState } from "react";
 import "./sell.css";
 
-export default function Sell() {
+export default function Sell({ handleSetSell }) {
   const [glass, setGlass] = useState({
     id: null,
     size: null,
@@ -21,10 +21,8 @@ export default function Sell() {
   const [acomp, setAcomp] = useState({ id: null, name: null });
   const [whey, setWhey] = useState({ id: null, name: null });
   const [combo, setCombo] = useState({ id: null, name: null, price: null });
-
-  const [order, setOrder] = useState(undefined);
-
   const [delivery, setDelivery] = useState(false);
+  const [message, setMessage] = useState({ hasMsg: false, msg: "" });
 
   function handleSelectGlass(i, item) {
     if (glass.id == i) {
@@ -79,15 +77,19 @@ export default function Sell() {
   }
 
   function handleSetOrder() {
-    if (combo.id !== undefined) {
-      setOrder({
+    if (combo.id !== null) {
+      handleSetSell({
         pedido: `${combo.name}`,
         delivery,
         valor: `R$:${combo.price},00`,
       });
-      console.log(order);
-    } else if (flavor.id !== undefined) {
-      setOrder({
+      setCombo({ id: null, name: null, price: null });
+      setMessage({ hasMsg: true, msg: "Bomba Adicionada" });
+      setTimeout(() => {
+        setMessage({ hasMsg: false, msg: "" });
+      }, 2000);
+    } else if (flavor.id !== null) {
+      handleSetSell({
         pedido: `Vitamina de ${flavor.name}`,
         delivery,
         copo: glass.size,
@@ -96,7 +98,15 @@ export default function Sell() {
         whey: whey.name,
         valor: `R$:${glass.price},00`,
       });
-      console.log(order);
+      setGlass({ id: null, size: null, price: null });
+      setFlavor({ id: null, name: null });
+      setTop({ id: null, name: null });
+      setAcomp({ id: null, name: null });
+      setWhey({ id: null, name: null });
+      setMessage({ hasMsg: true, msg: "Bomba Adicionada" });
+      setTimeout(() => {
+        setMessage({ hasMsg: false, msg: "" });
+      }, 2000);
     } else {
       console.log("Monte uma vitamina");
     }
@@ -104,6 +114,7 @@ export default function Sell() {
 
   return (
     <div className="sell">
+      {message.hasMsg && <div className="sell-message">{message.msg}</div>}
       <h2 className="sell-title">Tamanhos</h2>
       <div className="sell-glasses">
         {glasses.map((item, i) => (

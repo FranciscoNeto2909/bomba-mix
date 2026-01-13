@@ -1,0 +1,71 @@
+.summary {
+  max-width: 100vw;
+  margin: 18px 14px 100px;
+}
+
+.summary-title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--orange);
+}
+
+.summary-title h2 {
+  font-size: 32px;
+}
+
+.summary-bombamix {
+  margin-bottom: 32px;
+}
+
+.summary-bombamix,
+.summary-delivery {
+  padding: 18px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 2px #00000055;
+}
+
+.bombamix-title,
+.delivery-title {
+  text-align: center;
+  margin-bottom: 12px;
+  color: var(--orange);
+  font-size: 20px;
+}
+
+.sales-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  color: var(--orange);
+  font-weight: bold;
+}
+
+.sales-sum {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.sales-sum-text {
+  font-size: 18px;
+  color: var(--green);
+  font-weight: bold;
+}
+
+.summary-button {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.summary-button button {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+}

@@ -3,7 +3,7 @@ import Menu from "./components/menu/Menu";
 import logo from "./assets/logo.png";
 import { SiBuymeacoffee } from "react-icons/si";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Sell from "./pages/sell/Sell";
 import Summary from "./pages/summary/Summary";
@@ -11,6 +11,29 @@ import Inventory from "./pages/inventory/Inventory";
 
 function App() {
   const [glassQuant, setGlassQuant] = useState(30);
+  const [sales, setSales] = useState({ bombamix: [], delivery: [] });
+
+  function handleSetSell(order) {
+    setGlassQuant(glassQuant - 1);
+    setSales(prev => {
+      if (order.delivery) {
+        return {
+          ...prev,
+          delivery: [...prev.delivery, order],
+        };
+      } else {
+        return {
+          ...prev,
+          bombamix: [...prev.bombamix, order],
+        };
+      }
+    });
+  }
+
+  useEffect(() => {
+    console.log(sales);
+  }, [sales]);
+
   return (
     <>
       <div className="header">
@@ -25,8 +48,8 @@ function App() {
         </div>
       </div>
       <Routes>
-        <Route path="fechamento" element={<Summary />} />
-        <Route path="/" element={<Sell />} />
+        <Route path="fechamento" element={<Summary sales={sales} />} />
+        <Route path="/" element={<Sell handleSetSell={handleSetSell} />} />
         <Route path="estoque" element={<Inventory />} />
       </Routes>
       {window.innerWidth < 768 && <Menu />}

@@ -3,6 +3,19 @@
   margin: 18px 14px 100px;
 }
 
+.sell-message {
+  position: fixed;
+  background-color: var(--green);
+  color: #fff;
+  width: 90%;
+  padding: 12px;
+  border-radius: 8px;
+  top: 50px;
+  z-index: 1;
+  text-align: center;
+  font-weight: bold;
+}
+
 .sell-title {
   font-size: 32px;
   color: var(--orange);
@@ -46,7 +59,7 @@
 }
 
 .sell-flavors {
-  gap: 12px  0;
+  gap: 12px 0;
   justify-content: space-between;
 }
 
@@ -121,7 +134,7 @@
 }
 
 .delivery-box {
- transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .button {
