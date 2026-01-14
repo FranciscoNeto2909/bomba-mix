@@ -1,0 +1,97 @@
+.inventory {
+  margin: 100px 14px;
+}
+
+.inventory-title,
+.updateGlass-title {
+  color: var(--orange);
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.inventory-addglass {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.addglass-title {
+  color: var(--orange);
+  font-weight: bold;
+}
+
+.add-input {
+  width: 50px;
+  margin-right: 12px;
+  border-radius: 4px;
+  border: 2px solid var(--orange);
+  padding: 4px 2px;
+  font-weight: bold;
+  color: var(--orange);
+}
+
+.add-button {
+  border: none;
+  background-color: var(--orange);
+  padding: 6px;
+  font-weight: bold;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.updateGlass-glasses {
+  margin-bottom: 24px;
+}
+.glasses-desc {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: var(--orange);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.glasses-glass-size {
+  font-size: 18px;
+  width: 78px;
+}
+
+.glasses-glass-price {
+  width: 90px;
+  font-size: 18px;
+}
+
+.glasses-glass {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 6px;
+}
+
+.newprice-input {
+  width: 70px;
+  border: 2px solid var(--orange);
+  border-radius: 4px;
+  margin-right: 4px;
+  padding: 3px 4px;
+}
+
+.newprice-button-add,
+.newprice-delete-button {
+  color: #fff;
+  background-color: var(--green);
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: none;
+}
+
+.newprice-delete {
+  width: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.newprice-delete-button {
+  background-color: var(--red);
+}

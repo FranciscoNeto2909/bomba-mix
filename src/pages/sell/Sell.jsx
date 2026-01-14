@@ -1,16 +1,11 @@
-import {
-  accompaniments,
-  combos,
-  flavores,
-  glasses,
-  toppings,
-  wheys,
-} from "../../data/data";
 import { SiBuymeacoffee } from "react-icons/si";
 import { useState } from "react";
+import { useMyStore } from "../../store/store";
 import "./sell.css";
 
 export default function Sell({ handleSetSell }) {
+  const items = useMyStore();
+
   const [glass, setGlass] = useState({
     id: null,
     size: null,
@@ -129,7 +124,7 @@ export default function Sell({ handleSetSell }) {
       {message.hasMsg && <div className="sell-message">{message.msg}</div>}
       <h2 className="sell-title">Tamanhos</h2>
       <div className="sell-glasses">
-        {glasses.map((item, i) => (
+        {items.glasses.map((item, i) => (
           <div className="glass" key={i}>
             <button
               onClick={() => handleSelectGlass(i, item)}
@@ -148,7 +143,7 @@ export default function Sell({ handleSetSell }) {
       </div>
       <h2 className="sell-title">Sabores</h2>
       <div className="sell-flavors">
-        {flavores.map((item, i) => (
+        {items.flavors.map((item, i) => (
           <div className="sell-flavor" key={i}>
             <button
               onClick={() => handleSelectFlavor(i, item)}
@@ -168,7 +163,7 @@ export default function Sell({ handleSetSell }) {
       </div>
       <h2 className="sell-title">Coberturas</h2>
       <div className="sell-topping">
-        {toppings.map((item, i) => (
+        {items.toppings.map((item, i) => (
           <div className="topping" key={i}>
             <button
               onClick={() => handleSelectTopping(i, item)}
@@ -188,7 +183,7 @@ export default function Sell({ handleSetSell }) {
       </div>
       <h2 className="sell-title">Acompanhamento</h2>
       <div className="sell-acommpaniments">
-        {accompaniments.map((item, i) => (
+        {items.accompaniments.map((item, i) => (
           <div className="acommpaniment" key={i}>
             <button
               onClick={() => handleSelectAcompaniment(i, item)}
@@ -208,7 +203,7 @@ export default function Sell({ handleSetSell }) {
       </div>
       <h2 className="sell-title">Whey</h2>
       <div className="sell-whey">
-        {wheys.map((item, i) => (
+        {items.wheys.map((item, i) => (
           <div className="whey" key={i}>
             <button
               onClick={() => handleSelectWhey(i, item)}
@@ -226,7 +221,7 @@ export default function Sell({ handleSetSell }) {
       </div>
       <h2 className="sell-title">Combos</h2>
       <div className="sell-combos">
-        {combos.map((item, i) => (
+        {items.combos.map((item, i) => (
           <div className="combo" key={i}>
             <button
               onClick={() => handleSelectCombo(i, item)}

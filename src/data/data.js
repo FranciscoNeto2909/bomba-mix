@@ -19,47 +19,47 @@ import turbo from "../assets/turbo.jpg";
 import power from "../assets/power.jpg";
 import bomba from "../assets/bomba.png";
 
-export const glasses = [
-  { size: "300ml",iconS:55, price: 7 },
-  { size: "400ml",iconS:65, price: 8 },
-  { size: "500ml",iconS:70, price: 11 },
-  { size: "700ml",iconS:75, price: 15 },
+export const initialGlasses = [
+  { id: 1, size: "300ml", iconS: 55, price: 7 },
+  { id: 2, size: "400ml", iconS: 65, price: 8 },
+  { id: 3, size: "500ml", iconS: 70, price: 11 },
+  { id: 4, size: "700ml", iconS: 75, price: 15 },
 ];
 
-export const flavores = [
-  { name: "Guaraná", img: guarana },
-  { name: "Abacaxi com Hortelã", img: abacaxi },
-  { name: "Açaí", img: acai },
-  { name: "Banana", img: banana },
-  { name: "Chocolate", img: chocolate },
-  { name: "Cupuaçu", img: cupuacu },
-  { name: "Doce de Leite", img: doce },
-  { name: "Limão", img: limao },
-  { name: "Maracujá", img: maracuja },
-  { name: "Morango", img: morango },
-  { name: "Ninho com Ovomaltine", img: ninho },
+export const initialFlavors = [
+  { id: 1, name: "Guaraná", img: guarana },
+  { id: 2, name: "Abacaxi com Hortelã", img: abacaxi },
+  { id: 3, name: "Açaí", img: acai },
+  { id: 4, name: "Banana", img: banana },
+  { id: 5, name: "Chocolate", img: chocolate },
+  { id: 6, name: "Cupuaçu", img: cupuacu },
+  { id: 7, name: "Doce de Leite", img: doce },
+  { id: 8, name: "Limão", img: limao },
+  { id: 9, name: "Maracujá", img: maracuja },
+  { id: 10, name: "Morango", img: morango },
+  { id: 11, name: "Ninho com Ovomaltine", img: ninho },
 ];
 
-export const wheys = [
-  { name: "Whey com Chocolate", img: wheyC },
-  { name: "Whey com Morango", img: wheyM },
+export const initialWheys = [
+  { id: 1, name: "Whey com Chocolate", img: wheyC },
+  { id: 2, name: "Whey com Morango", img: wheyM },
 ];
 
-export const toppings = [
-  flavores[4],
-  flavores[6],
-  { name: "Menta", img: menta },
-  flavores[9],
+export const initialToppings = [
+  { ...initialFlavors[4], id: 1 },
+  { ...initialFlavors[6], id: 2 },
+  { id: 3, name: "Menta", img: menta },
+  { ...initialFlavors[9], id: 4 },
 ];
 
-export const accompaniments = [
-  { name: "Amendoim", img: amendoim },
-  { name: "Paçoca", img: pacoca },
+export const initialAccompaniments = [
+  { id: 1, name: "Amendoim", img: amendoim },
+  { id: 2, name: "Paçoca", img: pacoca },
 ];
 
-export const combos = [
-  { name: "Combo Explosão", img: explosao, price: 16 },
-  { name: "Combo Turbo", img: turbo, price: 17 },
-  { name: "Combo Power", img: power, price: 20 },
-  { name: "Combo BombaMix", img: bomba, price: 21 },
+export const initialCombos = [
+  { id: 1, name: "Combo Explosão", img: explosao, price: 16 },
+  { id: 2, name: "Combo Turbo", img: turbo, price: 17 },
+  { id: 3, name: "Combo Power", img: power, price: 20 },
+  { id: 4, name: "Combo BombaMix", img: bomba, price: 21 },
 ];
