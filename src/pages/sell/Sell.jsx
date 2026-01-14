@@ -17,7 +17,6 @@ export default function Sell({ handleSetSell }) {
   const [whey, setWhey] = useState({ id: null, name: null });
   const [combo, setCombo] = useState({ id: null, name: null, price: null });
   const [delivery, setDelivery] = useState(false);
-  const [message, setMessage] = useState({ hasMsg: false, msg: "" });
 
   function handleSelectGlass(i, item) {
     if (glass.id === i) {
@@ -80,7 +79,7 @@ export default function Sell({ handleSetSell }) {
       });
       setCombo({ id: null, name: null, price: null });
       setDelivery(false);
-      setMessage({ hasMsg: true, msg: "Bomba Adicionada" });
+      items.setMessage("Bomba adicionada");
       setTimeout(() => {
         setMessage({ hasMsg: false, msg: "" });
       }, 2000);
@@ -100,12 +99,12 @@ export default function Sell({ handleSetSell }) {
       setAcomp({ id: null, name: null });
       setWhey({ id: null, name: null });
       setDelivery(false);
-      setMessage({ hasMsg: true, msg: "Bomba Adicionada" });
+      items.setMessage("Vitamina adicionada");
       setTimeout(() => {
         setMessage({ hasMsg: false, msg: "" });
       }, 2000);
     } else {
-      console.log("Monte uma vitamina");
+      items.setMessage("Selecione uma vitamina");
     }
   }
 
@@ -121,7 +120,6 @@ export default function Sell({ handleSetSell }) {
 
   return (
     <div className="sell">
-      {message.hasMsg && <div className="sell-message">{message.msg}</div>}
       <h2 className="sell-title">Tamanhos</h2>
       <div className="sell-glasses">
         {items.glasses.map((item, i) => (

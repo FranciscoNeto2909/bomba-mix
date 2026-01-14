@@ -10,17 +10,24 @@ export default function Inventory() {
   const [comboPrice, setComboPrice] = useState({});
 
   function handleChangeGlassesQuant() {
-    items.addToGlass(items.glassQuant + Number(glass));
+    items.addToGlass(Number(glass));
+      items.setMessage("Quantidade de copos atualizada")
   }
 
   function handleChangeGlassPrice(glass) {
-    items.updateItem("glasses", glass.id, { price: glassPrice[glass.id] });
-    setGlassPrice({ ...glassPrice, [glass.id]: undefined });
+    if (glassPrice[glass.id] > 0) {
+      items.updateItem("glasses", glass.id, { price: glassPrice[glass.id] });
+      setGlassPrice({ ...glassPrice, [glass.id]: undefined });
+      items.setMessage("Preço do copo atualizado");
+    }
   }
 
-   function handleChangeComboPrice(combo) {
-    items.updateItem("combos", combo.id, { price: comboPrice[combo.id] });
-    setComboPrice({ ...comboPrice, [combo.id]: undefined });
+  function handleChangeComboPrice(combo) {
+    if (comboPrice[combo.id] > 0) {
+      items.updateItem("combos", combo.id, { price: comboPrice[combo.id] });
+      setComboPrice({ ...comboPrice, [combo.id]: undefined });
+      items.setMessage("Preço do combo atualizado");
+    }
   }
 
   function handleDelete(key, id) {
@@ -91,7 +98,7 @@ export default function Inventory() {
         </div>
       </div>
       <div className="inventory-updatecombos">
-      <h2 className="combos-title">Combos</h2>
+        <h2 className="combos-title">Combos</h2>
         <div className="combos-desc">
           <p>Combo</p>
           <p>Preço Atual</p>

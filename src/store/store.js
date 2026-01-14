@@ -10,6 +10,7 @@ import {
 
 export const useMyStore = create(set => ({
   glassQuant: 30,
+  message: { hasMsg: false, message: "" },
   glasses: [...initialGlasses],
   flavors: [...initialFlavors],
   toppings: [...initialToppings],
@@ -17,8 +18,10 @@ export const useMyStore = create(set => ({
   wheys: [...initialWheys],
   combos: [...initialCombos],
 
-  addToGlass: item => set(state => ({ glassQuant: item })),
-  removeToGlass: item => set(state => ({ glassQuant:state.glassQuant - item })),
+  addToGlass: item => set(state => ({ glassQuant: state.glassQuant + item })),
+
+  removeToGlass: item =>
+    set(state => ({ glassQuant: state.glassQuant - item })),
 
   addItem: (key, item) =>
     set(state => ({
@@ -36,4 +39,15 @@ export const useMyStore = create(set => ({
         item.id === id ? { ...item, ...data } : item
       ),
     })),
+
+  setMessage: message => {
+    set(state => ({
+      message: { hasMsg: true, msg: message },
+    }));
+    setTimeout(() => {
+      set(() => ({
+        message: { hasMsg: false, msg: "" },
+      }));
+    }, 2000);
+  },
 }));

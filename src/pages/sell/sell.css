@@ -3,19 +3,6 @@
   margin: 100px 14px;
 }
 
-.sell-message {
-  position: fixed;
-  background-color: var(--green);
-  color: #fff;
-  width: 90%;
-  padding: 12px;
-  border-radius: 8px;
-  top: 50px;
-  z-index: 2;
-  text-align: center;
-  font-weight: bold;
-}
-
 .sell-title {
   font-size: 32px;
   color: var(--orange);

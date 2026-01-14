@@ -45,6 +45,7 @@ function App() {
           <SiBuymeacoffee size={44} />
         </div>
       </div>
+      {items.message.hasMsg && <div className="message">{items.message.msg}</div>}
       <Routes>
         <Route path="fechamento" element={<Summary sales={sales} />} />
         <Route path="/" element={<Sell handleSetSell={handleSetSell} />} />

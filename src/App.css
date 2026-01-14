@@ -13,13 +13,28 @@
 
 .logo-img {
   height: 70px;
-  height: inherit;
 }
 
 .logo-name {
   color: var(--orange);
   font-weight: bold;
   font-size: 18px;
+}
+
+.message {
+  position: fixed;
+  background-color: var(--green);
+  color: #fff;
+  width: 90%;
+  left: 50%;
+  transform: translatex(-50%);
+  margin: 0 auto;
+  padding: 12px;
+  border-radius: 8px;
+  top: 50px;
+  z-index: 2;
+  text-align: center;
+  font-weight: bold;
 }
 
 .glass {
