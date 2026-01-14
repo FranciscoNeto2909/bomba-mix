@@ -6,19 +6,25 @@ import { useMyStore } from "../../store/store";
 export default function Inventory() {
   const items = useMyStore();
   const [glass, setGlass] = useState(10);
-  const [newPrice, setNewPrice] = useState({});
+  const [glassPrice, setGlassPrice] = useState({});
+  const [comboPrice, setComboPrice] = useState({});
 
   function handleChangeGlassesQuant() {
     items.addToGlass(items.glassQuant + Number(glass));
   }
 
   function handleChangeGlassPrice(glass) {
-    items.updateItem("glasses", glass.id, { price: newPrice[glass.id] });
-    setNewPrice({ ...newPrice, [glass.id]: undefined });
+    items.updateItem("glasses", glass.id, { price: glassPrice[glass.id] });
+    setGlassPrice({ ...glassPrice, [glass.id]: undefined });
   }
 
-  function handleDeleteGlass(id) {
-    items.removeItem("glasses", id);
+   function handleChangeComboPrice(combo) {
+    items.updateItem("combos", combo.id, { price: comboPrice[combo.id] });
+    setComboPrice({ ...comboPrice, [combo.id]: undefined });
+  }
+
+  function handleDelete(key, id) {
+    items.removeItem(key, id);
   }
 
   return (
@@ -56,9 +62,9 @@ export default function Inventory() {
                 <input
                   type="number"
                   className="newprice-input"
-                  value={newPrice[item.id] || ""}
+                  value={glassPrice[item.id] || ""}
                   onChange={e =>
-                    setNewPrice(prev => ({
+                    setGlassPrice(prev => ({
                       ...prev,
                       [item.id]: e.target.value,
                     }))
@@ -67,7 +73,7 @@ export default function Inventory() {
                 <button className="newprice-button-add">
                   <AiOutlineCheck
                     onClick={() =>
-                      handleChangeGlassPrice(item, newPrice[item.id])
+                      handleChangeGlassPrice(item, glassPrice[item.id])
                     }
                   />
                 </button>
@@ -75,7 +81,7 @@ export default function Inventory() {
               <div className="newprice-delete">
                 <button
                   className="newprice-delete-button"
-                  onClick={() => handleDeleteGlass(item.id)}
+                  onClick={() => handleDelete("glasses", item.id)}
                 >
                   <AiOutlineClose />
                 </button>
@@ -83,6 +89,49 @@ export default function Inventory() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="inventory-updatecombos">
+      <h2 className="combos-title">Combos</h2>
+        <div className="combos-desc">
+          <p>Combo</p>
+          <p>Preço Atual</p>
+          <p>Novo Preço</p>
+          <p>Excluir</p>
+        </div>
+        {items.combos.map((item, i) => (
+          <div className="combos-combo" key={i}>
+            <p className="combos-combo-name">{item.name}</p>
+            <p className="combos-combo-price">R${item.price},00</p>
+            <div className="cmbos-newprice">
+              <input
+                type="number"
+                className="newprice-input"
+                value={comboPrice[item.id] || ""}
+                onChange={e =>
+                  setComboPrice(prev => ({
+                    ...prev,
+                    [item.id]: e.target.value,
+                  }))
+                }
+              />
+              <button className="newprice-button-add">
+                <AiOutlineCheck
+                  onClick={() =>
+                    handleChangeComboPrice(item, comboPrice[item.id])
+                  }
+                />
+              </button>
+            </div>
+            <div className="newprice-delete">
+              <button
+                className="newprice-delete-button"
+                onClick={() => handleDelete("combos", item.id)}
+              >
+                <AiOutlineClose />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

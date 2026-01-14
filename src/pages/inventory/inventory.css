@@ -3,13 +3,15 @@
 }
 
 .inventory-title,
-.updateGlass-title {
+.updateGlass-title,
+.combos-title {
   color: var(--orange);
   font-size: 32px;
   margin-bottom: 24px;
 }
 
-.inventory-addglass {
+.inventory-addglass,
+.inventory-combos {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,7 +45,9 @@
 .updateGlass-glasses {
   margin-bottom: 24px;
 }
-.glasses-desc {
+
+.glasses-desc,
+.combos-desc {
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
@@ -52,17 +56,19 @@
   font-size: 18px;
 }
 
-.glasses-glass-size {
+.glasses-glass-size,
+.combos-combo-name {
   font-size: 18px;
   width: 78px;
 }
 
-.glasses-glass-price {
+.glasses-glass-price,
+.combos-combo-price {
   width: 90px;
   font-size: 18px;
 }
 
-.glasses-glass {
+.glasses-glass, .combos-combo {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
