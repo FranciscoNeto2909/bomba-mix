@@ -5,13 +5,13 @@ import { useMyStore } from "../../store/store";
 
 export default function Inventory() {
   const items = useMyStore();
-  const [glass, setGlass] = useState(10);
+  const [glass, setGlass] = useState(null);
   const [glassPrice, setGlassPrice] = useState({});
   const [comboPrice, setComboPrice] = useState({});
 
   function handleChangeGlassesQuant() {
     items.addToGlass(Number(glass));
-      items.setMessage("Quantidade de copos atualizada")
+    items.setMessage("Quantidade de copos atualizada");
   }
 
   function handleChangeGlassPrice(glass) {
@@ -30,9 +30,9 @@ export default function Inventory() {
     }
   }
 
-  function handleDelete(key, id) {
-    items.removeItem(key, id);
-  }
+  // function handleDelete(key, id) {
+  //   items.removeItem(key, id);
+  // }
 
   return (
     <div className="inventory">
@@ -59,7 +59,7 @@ export default function Inventory() {
             <p>Tamanho</p>
             <p>Preço Atual</p>
             <p>Novo Preço</p>
-            <p>Excluir</p>
+            {/* <p>Excluir</p> */}
           </div>
           {items.glasses.map((item, i) => (
             <div className="glasses-glass" key={i}>
@@ -85,14 +85,14 @@ export default function Inventory() {
                   />
                 </button>
               </div>
-              <div className="newprice-delete">
+              {/* <div className="newprice-delete">
                 <button
                   className="newprice-delete-button"
                   onClick={() => handleDelete("glasses", item.id)}
                 >
                   <AiOutlineClose />
                 </button>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
@@ -103,7 +103,7 @@ export default function Inventory() {
           <p>Combo</p>
           <p>Preço Atual</p>
           <p>Novo Preço</p>
-          <p>Excluir</p>
+          {/* <p>Excluir</p> */}
         </div>
         {items.combos.map((item, i) => (
           <div className="combos-combo" key={i}>
@@ -129,14 +129,14 @@ export default function Inventory() {
                 />
               </button>
             </div>
-            <div className="newprice-delete">
+            {/* <div className="newprice-delete">
               <button
                 className="newprice-delete-button"
                 onClick={() => handleDelete("combos", item.id)}
               >
                 <AiOutlineClose />
               </button>
-            </div>
+            </div> */}
           </div>
         ))}
       </div>

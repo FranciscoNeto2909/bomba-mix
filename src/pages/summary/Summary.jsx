@@ -54,6 +54,7 @@ export default function Summary({ sales }) {
           {sales.bombamix.map((item, i) => (
             <div className="sales-item" key={i}>
               <p>{item.pedido}</p>
+              <p>{item.pagamento}</p>
               <p>{item.valor}</p>
             </div>
           ))}
@@ -71,6 +72,7 @@ export default function Summary({ sales }) {
           {sales.delivery.map((item, i) => (
             <div className="sales-item" key={i}>
               <p>{item.pedido}</p>
+              <p>{item.pagamento}</p>
               <p>{item.valor}</p>
             </div>
           ))}

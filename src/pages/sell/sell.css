@@ -124,6 +124,28 @@
   transform: scale(1.2);
 }
 
+.buttons-payment {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.payment-button {
+  padding: 6px 10px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 2px solid var(--orange);
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.payment-button--selected {
+  background-color: var(--orange);
+  border-color: var(--orange);
+  color: #fff;
+}
+
 .button {
   font-size: 18px;
   padding: 14px;

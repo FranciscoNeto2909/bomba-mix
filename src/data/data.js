@@ -58,8 +58,8 @@ export const initialAccompaniments = [
 ];
 
 export const initialCombos = [
-  { id: 1, name: "Combo Explosão", img: explosao, price: 16 },
-  { id: 2, name: "Combo Turbo", img: turbo, price: 17 },
-  { id: 3, name: "Combo Power", img: power, price: 20 },
-  { id: 4, name: "Combo BombaMix", img: bomba, price: 21 },
+  { id: 1, name: "Explosão", img: explosao, price: 16 },
+  { id: 2, name: "Turbo", img: turbo, price: 17 },
+  { id: 3, name: "Power", img: power, price: 20 },
+  { id: 4, name: "BombaMix", img: bomba, price: 21 },
 ];
