@@ -2,9 +2,12 @@ import { SiBuymeacoffee } from "react-icons/si";
 import { useState } from "react";
 import { useMyStore } from "../../store/store";
 import "./sell.css";
+import { IoAddOutline } from "react-icons/io5";
+import { AiOutlineMinus } from "react-icons/ai";
 
 export default function Sell({ handleSetSell }) {
   const items = useMyStore();
+  const [glassQuant, setGlassQuant] = useState(1);
 
   const [glass, setGlass] = useState({
     id: null,
@@ -17,7 +20,8 @@ export default function Sell({ handleSetSell }) {
   const [whey, setWhey] = useState({ id: null, name: null });
   const [combo, setCombo] = useState({ id: null, name: null, price: null });
   const [delivery, setDelivery] = useState(false);
-  const [payment, setPayment] = useState({ id: 1, value: "dinheiro" });
+  const [pickUp, setPickUp] = useState({ id: 1, value: "Bombamix" });
+  const [payment, setPayment] = useState({ id: 1, value: "Dinheiro" });
 
   function handleSelectGlass(i, item) {
     if (glass.id === i) {
@@ -75,12 +79,16 @@ export default function Sell({ handleSetSell }) {
     if (combo.id !== null) {
       handleSetSell({
         pedido: `Combo ${combo.name}`,
-        delivery,
+        quantidade: glassQuant,
+        delivery: pickUp.id === 1 ? false : true,
         pagamento: payment.value,
-        valor: `R$:${combo.price},00`,
+        valor: `R$:${combo.price * glassQuant},00`,
       });
       setCombo({ id: null, name: null, price: null });
       setDelivery(false);
+      setPayment({ id: 1, value: "Dinheiro" });
+      setGlassQuant(1);
+      setPickUp({ id: 1, value: "Bombamix" });
       items.setMessage("Combo adicionado");
       setTimeout(() => {
         setMessage({ hasMsg: false, msg: "" });
@@ -88,13 +96,14 @@ export default function Sell({ handleSetSell }) {
     } else if (glass.id !== null && flavor.id !== null) {
       handleSetSell({
         pedido: `${flavor.name}`,
-        delivery,
+        quantidade: glassQuant,
+        delivery: pickUp.id === 1 ? true : false,
         copo: glass.size,
         cobertura: top.name ?? "Sem cobertura",
         acompanha: acomp.name ?? "Sem acompanhamento",
         whey: whey.name ?? "Sem whey",
         pagamento: payment.value,
-        valor: `R$:${glass.price},00`,
+        valor: `R$:${glass.price * glassQuant},00`,
       });
       setGlass({ id: null, size: null, price: null });
       setFlavor({ id: null, name: null });
@@ -102,6 +111,9 @@ export default function Sell({ handleSetSell }) {
       setAcomp({ id: null, name: null });
       setWhey({ id: null, name: null });
       setDelivery(false);
+      setPayment({ id: 1, value: "Dinheiro" });
+      setGlassQuant(1);
+      setPickUp({ id: 1, value: "Bombamix" });
       items.setMessage("Vitamina adicionada");
       setTimeout(() => {
         setMessage({ hasMsg: false, msg: "" });
@@ -119,6 +131,9 @@ export default function Sell({ handleSetSell }) {
     setAcomp({ id: null, name: null });
     setWhey({ id: null, name: null });
     setDelivery(false);
+    setPayment({ id: 1, value: "Dinheiro" });
+    setGlassQuant(1);
+    setPickUp({ id: 1, value: "Bombamix" });
   }
 
   return (
@@ -241,47 +256,75 @@ export default function Sell({ handleSetSell }) {
         ))}
       </div>
       <div className="sell-buttons">
+        <h2 className="delivery-text">Retirada</h2>
         <div className="buttons-delivery">
-          <span className="delivery-text">+Delivery</span>
-          <input
-            checked={delivery}
-            onChange={() => setDelivery(!delivery)}
-            className="delivery-box"
-            type="checkbox"
-          />
+          <button
+            className={`delivery-button ${
+              pickUp.id === 1 ? "delivery-button--selected" : ""
+            }`}
+            onClick={() => setPickUp({ id: 1, value: "Bombamix" })}
+          >
+            BombaMix
+          </button>
+          <button
+            className={`delivery-button ${
+              pickUp.id === 2 ? "delivery-button--selected" : ""
+            }`}
+            onClick={() => setPickUp({ id: 2, value: "+Delivery" })}
+          >
+            +Delivery
+          </button>
+        </div>
+        <div className="buttons-glassQuant">
+          <span className="glassQuant-title">Quantidade</span>
+          <button
+            className={`glassQuant-button ${
+              glassQuant === 1 ? "glassQuant-button--unvailable" : ""
+            }`}
+            onClick={() => glassQuant > 1 && setGlassQuant(glassQuant - 1)}
+          >
+            <AiOutlineMinus size={25} />
+          </button>
+          <span>{glassQuant}</span>
+          <button
+            className="glassQuant-button"
+            onClick={() => setGlassQuant(glassQuant + 1)}
+          >
+            <IoAddOutline size={25} />
+          </button>
         </div>
         <div className="buttons-payment">
           <button
             className={`payment-button ${
               payment.id === 1 ? "payment-button--selected" : ""
             }`}
-            onClick={() => setPayment({ id: 1, value: "dinheiro" })}
+            onClick={() => setPayment({ id: 1, value: "Dinheiro" })}
           >
             dinheiro
           </button>
           <button
-             className={`payment-button ${
+            className={`payment-button ${
               payment.id === 2 ? "payment-button--selected" : ""
             }`}
-            onClick={() => setPayment({ id: 2, value: "pix" })}
+            onClick={() => setPayment({ id: 2, value: "Pix" })}
           >
             Pix
           </button>
           <button
-             className={`payment-button ${
+            className={`payment-button ${
               payment.id === 3 ? "payment-button--selected" : ""
             }`}
-            onClick={() => setPayment({ id: 3, value: "debito" })}
+            onClick={() => setPayment({ id: 3, value: "Débito" })}
           >
-            Debito
+            Débito
           </button>
           <button
-             className={`payment-button ${
+            className={`payment-button ${
               payment.id === 4 ? "payment-button--selected" : ""
             }`}
-            onClick={() => setPayment({ id: 4, value: "credito" })}
+            onClick={() => setPayment({ id: 4, value: "Crédito" })}
           >
-            Credito
+            Crédito
           </button>
         </div>
         <button className="button" onClick={handleSetOrder}>

@@ -50,12 +50,19 @@ export default function Summary({ sales }) {
       </div>
       <div className="summary-bombamix">
         <h3 className="bombamix-title">Vendas no BombaMix</h3>
+        <div className="sales-item">
+          <p className="item-quant">Quant</p>
+          <p className="item-name bombamix-name">Nome</p>
+          <p className="item-payment">Pagamento</p>
+          <p className="item-value">Valor</p>
+        </div>
         <div className="bombamix-sales">
           {sales.bombamix.map((item, i) => (
             <div className="sales-item" key={i}>
-              <p>{item.pedido}</p>
-              <p>{item.pagamento}</p>
-              <p>{item.valor}</p>
+              <p className="item-quant">{item.quantidade}</p>
+              <p className="item-name">{item.pedido}</p>
+              <p className="item-payment">{item.pagamento}</p>
+              <p className="item-value">{item.valor}</p>
             </div>
           ))}
           {sales.bombamix.length > 0 && (
@@ -68,12 +75,19 @@ export default function Summary({ sales }) {
       </div>
       <div className="summary-delivery">
         <h3 className="delivery-title">Vendas no +Delivery</h3>
+        <div className="sales-item">
+          <p className="item-quant">Quant</p>
+          <p className="item-name bombamix-name">Nome</p>
+          <p className="item-payment">Pagamento</p>
+          <p className="item-value">Valor</p>
+        </div>
         <div className="delivery-sales">
           {sales.delivery.map((item, i) => (
             <div className="sales-item" key={i}>
-              <p>{item.pedido}</p>
-              <p>{item.pagamento}</p>
-              <p>{item.valor}</p>
+              <p className="item-quant">{item.quantidade}</p>
+              <p className="item-name">{item.pedido}</p>
+              <p className="item-payment">{item.pagamento}</p>
+              <p className="item-value">{item.valor}</p>
             </div>
           ))}
           {sales.delivery.length > 0 && (

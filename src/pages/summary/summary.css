@@ -36,10 +36,25 @@
 
 .sales-item {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   color: var(--orange);
   font-weight: bold;
+}
+
+.item-quant {
+  width: 55px;
+}
+
+.item-name {
+  width: 150px;
+}
+
+.bombamix-name {
+  width: 150px;
+}
+
+.item-payment {
+  width: 90px;
 }
 
 .sales-sum {

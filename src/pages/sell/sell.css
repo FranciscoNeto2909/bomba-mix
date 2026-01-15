@@ -110,18 +110,50 @@
 .buttons-delivery {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 12px;
+  gap: 24px;
+  margin-bottom: 16px;
 }
 
 .delivery-text {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 32px;
+  font-weight: bold;
   color: var(--orange);
+  margin-bottom: 8px;
 }
 
 .delivery-box {
   transform: scale(1.2);
+}
+
+.buttons-glassQuant {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.glassQuant-title {
+  font-size: 32px;
+  color: var(--orange);
+  margin-right: 22px;
+}
+
+.glassQuant-button {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  background-color: var(--orange);
+}
+
+.glassQuant-button--unvailable {
+  background-color: #00000032;
 }
 
 .buttons-payment {
@@ -129,7 +161,8 @@
   justify-content: space-between;
   margin-bottom: 20px;
 }
-.payment-button {
+.payment-button,
+.delivery-button {
   padding: 6px 10px;
   font-weight: bold;
   font-size: 16px;
@@ -140,7 +173,8 @@
   text-transform: uppercase;
 }
 
-.payment-button--selected {
+.payment-button--selected,
+.delivery-button--selected {
   background-color: var(--orange);
   border-color: var(--orange);
   color: #fff;
