@@ -15,8 +15,8 @@ function App() {
 
   const [sales, setSales] = useState({ bombamix: [], delivery: [] });
 
-  function handleSetSell(order) {
-    items.removeToGlass(1);
+  function handleSetSell(order, quant) {
+    items.removeToGlass(quant);
     setSales(prev => {
       if (order.delivery) {
         return {

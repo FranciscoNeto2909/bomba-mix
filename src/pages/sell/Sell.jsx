@@ -76,14 +76,15 @@ export default function Sell({ handleSetSell }) {
   }
 
   function handleSetOrder() {
+    const isDelivery = pickUp.id !== 1;
     if (combo.id !== null) {
       handleSetSell({
         pedido: `Combo ${combo.name}`,
         quantidade: glassQuant,
-        delivery: pickUp.id === 1 ? false : true,
+        delivery: isDelivery,
         pagamento: payment.value,
         valor: `R$:${combo.price * glassQuant},00`,
-      });
+      }, glassQuant);
       setCombo({ id: null, name: null, price: null });
       setDelivery(false);
       setPayment({ id: 1, value: "Dinheiro" });
@@ -97,14 +98,14 @@ export default function Sell({ handleSetSell }) {
       handleSetSell({
         pedido: `${flavor.name}`,
         quantidade: glassQuant,
-        delivery: pickUp.id === 1 ? true : false,
+        delivery: isDelivery,
         copo: glass.size,
         cobertura: top.name ?? "Sem cobertura",
         acompanha: acomp.name ?? "Sem acompanhamento",
         whey: whey.name ?? "Sem whey",
         pagamento: payment.value,
         valor: `R$:${glass.price * glassQuant},00`,
-      });
+      }, glassQuant);
       setGlass({ id: null, size: null, price: null });
       setFlavor({ id: null, name: null });
       setTop({ id: null, name: null });
