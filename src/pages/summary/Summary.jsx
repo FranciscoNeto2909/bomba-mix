@@ -21,8 +21,8 @@ export default function Summary({ sales }) {
     const texto = encodeURIComponent(mensagem);
     const url = `https://wa.me/5585996260929?text=${texto}`;
     window.open(url, "_blank");
-    localStorage.removeItem("sales");
-    window.location.reload()
+    localStorage.removeItem("sales")
+    window.location.reload();
   }
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function Summary({ sales }) {
           {sales.bombamix.length > 0 && (
             <div className="sales-sum">
               <p className="sales-sum-text">Total:</p>
-              <div className="sales-sum-text">R${bombamix},00</div>
+              <div className="sales-sum-text">R${bombamix.toFixed(2).replace(".", ",")}</div>
             </div>
           )}
         </div>
@@ -95,7 +95,7 @@ export default function Summary({ sales }) {
           {sales.delivery.length > 0 && (
             <div className="sales-sum">
               <p className="sales-sum-text">Total:</p>
-              <div className="sales-sum-text">R${delivery},00</div>
+              <div className="sales-sum-text">R${delivery.toFixed(2).replace(".", ",")}</div>
             </div>
           )}
         </div>

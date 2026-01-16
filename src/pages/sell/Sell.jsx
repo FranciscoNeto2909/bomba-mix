@@ -78,6 +78,15 @@ export default function Sell({ handleSetSell }) {
 
   function handleSetOrder() {
     const isDelivery = pickUp.id !== 1;
+    const glassPrice =
+      payment.id === 4
+        ? glass.price * glassQuant + 0.5
+        : glass.price * glassQuant;
+    const comboPrice =
+      payment.id === 4
+        ? combo.price * glassQuant + 0.5
+        : combo.price * glassQuant;
+
     if (combo.id !== null) {
       handleSetSell(
         {
@@ -86,7 +95,7 @@ export default function Sell({ handleSetSell }) {
           delivery: isDelivery,
           copo: comboIds,
           pagamento: payment.value,
-          valor: `R$:${combo.price * glassQuant},00`,
+          valor: `R$:${comboPrice.toFixed(2).replace(".", ",")}`,
         },
         glassQuant
       );
@@ -106,7 +115,7 @@ export default function Sell({ handleSetSell }) {
           acompanha: acomp.name ?? "Sem acompanhamento",
           whey: whey.name ?? "Sem whey",
           pagamento: payment.value,
-          valor: `R$:${glass.price * glassQuant},00`,
+          valor: `R$:${glassPrice.toFixed(2).replace(".", ",")}`,
         },
         glassQuant
       );

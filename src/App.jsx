@@ -26,7 +26,6 @@ function App() {
     } else {
       items.removeGlass(order.copo.id, quant);
     }
-    
     setSales(prev => {
       if (order.delivery) {
         const deliverySales = {
