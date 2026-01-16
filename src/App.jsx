@@ -1,7 +1,6 @@
 import Nav from "./components/nav/Nav";
 import Menu from "./components/menu/Menu";
 import logo from "./assets/logo.png";
-import { SiBuymeacoffee } from "react-icons/si";
 import "./App.css";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -16,7 +15,7 @@ function App() {
   const [sales, setSales] = useState({ bombamix: [], delivery: [] });
 
   function handleSetSell(order, quant) {
-    items.removeToGlass(quant);
+    items.removeGlass(order.copo.id, quant);
     setSales(prev => {
       if (order.delivery) {
         return {
@@ -40,12 +39,11 @@ function App() {
         </div>
         <div className="logo-name">BOMBAMIX SGA</div>
         {window.innerWidth > 768 && <Nav />}
-        <div className="glass">
-          <span className="glass-quant">{items.glassQuant}</span>
-          <SiBuymeacoffee size={44} />
-        </div>
+        <div></div>
       </div>
-      {items.message.hasMsg && <div className="message">{items.message.msg}</div>}
+      {items.message.hasMsg && (
+        <div className="message">{items.message.msg}</div>
+      )}
       <Routes>
         <Route path="fechamento" element={<Summary sales={sales} />} />
         <Route path="/" element={<Sell handleSetSell={handleSetSell} />} />

@@ -15,6 +15,22 @@
   margin: 32px 0;
 }
 
+.glass-icon {
+  position: relative;
+}
+
+.icon-quant {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-weight: bold;
+}
+.icon-quant--selected{
+  color: var(--orange);
+}
+
 .glass-button {
   border: none;
   background-color: transparent;

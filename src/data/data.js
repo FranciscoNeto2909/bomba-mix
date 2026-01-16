@@ -20,10 +20,10 @@ import power from "../assets/power.jpg";
 import bomba from "../assets/bomba.png";
 
 export const initialGlasses = [
-  { id: 1, size: "300ml", iconS: 55, price: 7 },
-  { id: 2, size: "400ml", iconS: 65, price: 8 },
-  { id: 3, size: "500ml", iconS: 70, price: 11 },
-  { id: 4, size: "700ml", iconS: 75, price: 15 },
+  { id: 0, size: "300ml", quant:30, iconS: 55, price: 7 },
+  { id: 1, size: "400ml", quant:30, iconS: 65, price: 8 },
+  { id: 2, size: "500ml", quant:30, iconS: 70, price: 11 },
+  { id: 3, size: "700ml", quant:15, iconS: 75, price: 15 },
 ];
 
 export const initialFlavors = [

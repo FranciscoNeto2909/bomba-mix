@@ -6,11 +6,12 @@ import { useMyStore } from "../../store/store";
 export default function Inventory() {
   const items = useMyStore();
   const [glass, setGlass] = useState(null);
+  const [glassId, setGlassId] = useState(null);
   const [glassPrice, setGlassPrice] = useState({});
   const [comboPrice, setComboPrice] = useState({});
 
   function handleChangeGlassesQuant() {
-    items.addToGlass(Number(glass));
+    items.addGlass(glassId,Number(glass));
     items.setMessage("Quantidade de copos atualizada");
   }
 
@@ -30,26 +31,55 @@ export default function Inventory() {
     }
   }
 
-  // function handleDelete(key, id) {
-  //   items.removeItem(key, id);
-  // }
-
   return (
     <div className="inventory">
-      <h2 className="inventory-title">Estoque</h2>
       <div className="inventory-addglass">
-        <p className="addglass-title">Adicionar copos</p>
-        <div className="addglass-add">
-          <input
-            className="add-input"
-            type="number"
-            value={glass}
-            onChange={e => setGlass(e.target.value)}
-            autoFocus
-          />
-          <button className="add-button" onClick={handleChangeGlassesQuant}>
-            Adicionar
+        <h2 className="addglass-title">Adicionar copos</h2>
+        <div className="addGlass-sizes">
+          <button
+            className={`sizes-button ${
+              glassId === 0 ? "sizes-button--selected" : ""
+            }`}
+            onClick={() => setGlassId(0)}
+          >
+            300ml
           </button>
+          <button
+            className={`sizes-button ${
+              glassId === 1 ? "sizes-button--selected" : ""
+            }`}
+            onClick={() => setGlassId(1)}
+          >
+            400ml
+          </button>
+          <button
+            className={`sizes-button ${
+              glassId === 2 ? "sizes-button--selected" : ""
+            }`}
+            onClick={() => setGlassId(2)}
+          >
+            500ml
+          </button>
+          <button
+            className={`sizes-button ${
+              glassId === 3 ? "sizes-button--selected" : ""
+            }`}
+            onClick={() => setGlassId(3)}
+          >
+            700ml
+          </button>
+          <div className="addglass-add">
+            <input
+              className="add-input"
+              type="number"
+              value={glass}
+              onChange={e => setGlass(e.target.value)}
+              autoFocus
+            />
+            <button className="add-button" onClick={handleChangeGlassesQuant}>
+              <AiOutlineCheck />
+            </button>
+          </div>
         </div>
       </div>
       <div className="inventory-updateGlass">

@@ -52,7 +52,7 @@ export default function Summary({ sales }) {
         <h3 className="bombamix-title">Vendas no BombaMix</h3>
         <div className="sales-item">
           <p className="item-quant">Quant</p>
-          <p className="item-name bombamix-name">Nome</p>
+          <p className="item-name bombamix-name">Sabor</p>
           <p className="item-payment">Pagamento</p>
           <p className="item-value">Valor</p>
         </div>
@@ -77,7 +77,7 @@ export default function Summary({ sales }) {
         <h3 className="delivery-title">Vendas no +Delivery</h3>
         <div className="sales-item">
           <p className="item-quant">Quant</p>
-          <p className="item-name bombamix-name">Nome</p>
+          <p className="item-name bombamix-name">Sabor</p>
           <p className="item-payment">Pagamento</p>
           <p className="item-value">Valor</p>
         </div>

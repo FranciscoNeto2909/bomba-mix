@@ -99,7 +99,7 @@ export default function Sell({ handleSetSell }) {
         pedido: `${flavor.name}`,
         quantidade: glassQuant,
         delivery: isDelivery,
-        copo: glass.size,
+        copo: glass,
         cobertura: top.name ?? "Sem cobertura",
         acompanha: acomp.name ?? "Sem acompanhamento",
         whey: whey.name ?? "Sem whey",
@@ -149,7 +149,10 @@ export default function Sell({ handleSetSell }) {
                 i === glass.id ? "glass--selected" : ""
               }`}
             >
-              <SiBuymeacoffee size={item.iconS} className="glass-icon" />
+              <div className="glass-icon">
+                <SiBuymeacoffee size={item.iconS} className="glass-icon" />
+                <span className={`icon-quant ${i === glass.id ? "icon-quant--selected" : ""}`}>{item.quant}</span>
+              </div>
               <div className="glass-texts">
                 <span className="glass-size">{item.size}</span>
                 <p className="sell-glass-price">R$:{item.price},00</p>

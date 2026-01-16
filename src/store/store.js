@@ -9,7 +9,7 @@ import {
 } from "../data/data";
 
 export const useMyStore = create(set => ({
-  glassQuant: 30,
+  glasses: [...initialGlasses],
   message: { hasMsg: false, message: "" },
   glasses: [...initialGlasses],
   flavors: [...initialFlavors],
@@ -17,8 +17,6 @@ export const useMyStore = create(set => ({
   accompaniments: [...initialAccompaniments],
   wheys: [...initialWheys],
   combos: [...initialCombos],
-
-  addToGlass: item => set(state => ({ glassQuant: state.glassQuant + item })),
 
   removeToGlass: item =>
     set(state => ({ glassQuant: state.glassQuant - item })),
@@ -37,6 +35,20 @@ export const useMyStore = create(set => ({
     set(state => ({
       [key]: state[key].map(item =>
         item.id === id ? { ...item, ...data } : item
+      ),
+    })),
+
+  addGlass: (id, quant) =>
+    set(state => ({
+      glasses: state.glasses.map(item =>
+        item.id === id ? { ...item, quant: item.quant + quant } : item
+      ),
+    })),
+
+  removeGlass: (id, quant) =>
+    set(state => ({
+      glasses: state.glasses.map(item =>
+        item.id === id ? { ...item, quant: item.quant - quant } : item
       ),
     })),
 
