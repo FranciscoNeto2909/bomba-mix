@@ -20,10 +20,10 @@ import power from "../assets/power.jpg";
 import bomba from "../assets/bomba.png";
 
 export const initialGlasses = [
-  { id: 0, size: "300ml", quant:30, iconS: 55, price: 7 },
-  { id: 1, size: "400ml", quant:30, iconS: 65, price: 8 },
-  { id: 2, size: "500ml", quant:30, iconS: 70, price: 11 },
-  { id: 3, size: "700ml", quant:15, iconS: 75, price: 15 },
+  { id: 0, size: "300ml", quant: 30, iconS: 55, price: 7 },
+  { id: 1, size: "400ml", quant: 30, iconS: 65, price: 8 },
+  { id: 2, size: "500ml", quant: 30, iconS: 70, price: 11 },
+  { id: 3, size: "700ml", quant: 15, iconS: 75, price: 15 },
 ];
 
 export const initialFlavors = [
@@ -58,8 +58,8 @@ export const initialAccompaniments = [
 ];
 
 export const initialCombos = [
-  { id: 1, name: "Explosão", img: explosao, price: 16 },
-  { id: 2, name: "Turbo", img: turbo, price: 17 },
-  { id: 3, name: "Power", img: power, price: 20 },
-  { id: 4, name: "BombaMix", img: bomba, price: 21 },
+  { id: 1, size: 0, size2: 2, name: "Explosão", img: explosao, price: 16 },
+  { id: 2, size: 2, size2: 1, name: "Turbo", img: turbo, price: 17 },
+  { id: 3, size: 3, size2: 0, name: "Power", img: power, price: 20 },
+  { id: 4, size: 3, size2: 1, name: "BombaMix", img: bomba, price: 21 },
 ];

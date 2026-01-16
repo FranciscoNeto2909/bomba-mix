@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "./inventory.css";
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineCheck} from "react-icons/ai";
 import { useMyStore } from "../../store/store";
 
 export default function Inventory() {
   const items = useMyStore();
-  const [glass, setGlass] = useState(null);
-  const [glassId, setGlassId] = useState(null);
+  const [glass, setGlass] = useState("");
+  const [glassId, setGlassId] = useState("");
   const [glassPrice, setGlassPrice] = useState({});
   const [comboPrice, setComboPrice] = useState({});
 
@@ -18,7 +18,7 @@ export default function Inventory() {
   function handleChangeGlassPrice(glass) {
     if (glassPrice[glass.id] > 0) {
       items.updateItem("glasses", glass.id, { price: glassPrice[glass.id] });
-      setGlassPrice({ ...glassPrice, [glass.id]: undefined });
+      setGlassPrice({ ...glassPrice, [glass.id]: "" });
       items.setMessage("Preço do copo atualizado");
     }
   }
@@ -26,7 +26,7 @@ export default function Inventory() {
   function handleChangeComboPrice(combo) {
     if (comboPrice[combo.id] > 0) {
       items.updateItem("combos", combo.id, { price: comboPrice[combo.id] });
-      setComboPrice({ ...comboPrice, [combo.id]: undefined });
+      setComboPrice({ ...comboPrice, [combo.id]: "" });
       items.setMessage("Preço do combo atualizado");
     }
   }

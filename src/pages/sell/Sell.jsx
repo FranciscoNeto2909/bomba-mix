@@ -14,12 +14,12 @@ export default function Sell({ handleSetSell }) {
     size: null,
     price: null,
   });
+  const [comboIds, setComboIds] = useState({ size: null, size2: null });
   const [flavor, setFlavor] = useState({ id: null, name: null });
   const [top, setTop] = useState({ id: null, name: null });
   const [acomp, setAcomp] = useState({ id: null, name: null });
   const [whey, setWhey] = useState({ id: null, name: null });
   const [combo, setCombo] = useState({ id: null, name: null, price: null });
-  const [delivery, setDelivery] = useState(false);
   const [pickUp, setPickUp] = useState({ id: 1, value: "Bombamix" });
   const [payment, setPayment] = useState({ id: 1, value: "Dinheiro" });
 
@@ -66,6 +66,7 @@ export default function Sell({ handleSetSell }) {
     if (combo.id === i) {
       setCombo({ id: null, name: null, price: null });
     } else {
+      setComboIds({ id: item.size, id2: item.size2 });
       setCombo({ id: i, name: item.name, price: item.price });
       setGlass({ id: null, size: null, price: null });
       setFlavor({ id: null, name: null });
@@ -78,47 +79,46 @@ export default function Sell({ handleSetSell }) {
   function handleSetOrder() {
     const isDelivery = pickUp.id !== 1;
     if (combo.id !== null) {
-      handleSetSell({
-        pedido: `Combo ${combo.name}`,
-        quantidade: glassQuant,
-        delivery: isDelivery,
-        pagamento: payment.value,
-        valor: `R$:${combo.price * glassQuant},00`,
-      }, glassQuant);
+      handleSetSell(
+        {
+          pedido: `Combo ${combo.name}`,
+          quantidade: glassQuant,
+          delivery: isDelivery,
+          copo: comboIds,
+          pagamento: payment.value,
+          valor: `R$:${combo.price * glassQuant},00`,
+        },
+        glassQuant
+      );
       setCombo({ id: null, name: null, price: null });
-      setDelivery(false);
       setPayment({ id: 1, value: "Dinheiro" });
       setGlassQuant(1);
       setPickUp({ id: 1, value: "Bombamix" });
       items.setMessage("Combo adicionado");
-      setTimeout(() => {
-        setMessage({ hasMsg: false, msg: "" });
-      }, 2000);
     } else if (glass.id !== null && flavor.id !== null) {
-      handleSetSell({
-        pedido: `${flavor.name}`,
-        quantidade: glassQuant,
-        delivery: isDelivery,
-        copo: glass,
-        cobertura: top.name ?? "Sem cobertura",
-        acompanha: acomp.name ?? "Sem acompanhamento",
-        whey: whey.name ?? "Sem whey",
-        pagamento: payment.value,
-        valor: `R$:${glass.price * glassQuant},00`,
-      }, glassQuant);
+      handleSetSell(
+        {
+          pedido: `${flavor.name}`,
+          quantidade: glassQuant,
+          delivery: isDelivery,
+          copo: glass,
+          cobertura: top.name ?? "Sem cobertura",
+          acompanha: acomp.name ?? "Sem acompanhamento",
+          whey: whey.name ?? "Sem whey",
+          pagamento: payment.value,
+          valor: `R$:${glass.price * glassQuant},00`,
+        },
+        glassQuant
+      );
       setGlass({ id: null, size: null, price: null });
       setFlavor({ id: null, name: null });
       setTop({ id: null, name: null });
       setAcomp({ id: null, name: null });
       setWhey({ id: null, name: null });
-      setDelivery(false);
       setPayment({ id: 1, value: "Dinheiro" });
       setGlassQuant(1);
       setPickUp({ id: 1, value: "Bombamix" });
       items.setMessage("Vitamina adicionada");
-      setTimeout(() => {
-        setMessage({ hasMsg: false, msg: "" });
-      }, 2000);
     } else {
       items.setMessage("Selecione uma vitamina");
     }
@@ -151,7 +151,13 @@ export default function Sell({ handleSetSell }) {
             >
               <div className="glass-icon">
                 <SiBuymeacoffee size={item.iconS} className="glass-icon" />
-                <span className={`icon-quant ${i === glass.id ? "icon-quant--selected" : ""}`}>{item.quant}</span>
+                <span
+                  className={`icon-quant ${
+                    i === glass.id ? "icon-quant--selected" : ""
+                  }`}
+                >
+                  {item.quant}
+                </span>
               </div>
               <div className="glass-texts">
                 <span className="glass-size">{item.size}</span>

@@ -12,22 +12,36 @@ import Wellcome from "./pages/wellcome/Wellcome";
 
 function App() {
   const items = useMyStore();
-  const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged"));
-  const [sales, setSales] = useState({ bombamix: [], delivery: [] });
+  const localSales = localStorage.getItem("sales");
+  const [isLogged, setIsLogged] = useState(
+    localStorage.getItem("isLogged") === "true"
+  );
+  const [sales, setSales] = useState(
+    localSales ? JSON.parse(localSales) : { bombamix: [], delivery: [] }
+  );
 
   function handleSetSell(order, quant) {
-    items.removeGlass(order.copo.id, quant);
+    if (order.copo.id2) {
+      items.removeComboGlass(order.copo.id, order.copo.id2, quant);
+    } else {
+      items.removeGlass(order.copo.id, quant);
+    }
+    
     setSales(prev => {
       if (order.delivery) {
-        return {
+        const deliverySales = {
           ...prev,
           delivery: [...prev.delivery, order],
         };
+        localStorage.setItem("sales", JSON.stringify(deliverySales));
+        return deliverySales;
       } else {
-        return {
+        const bombaSales = {
           ...prev,
           bombamix: [...prev.bombamix, order],
         };
+        localStorage.setItem("sales", JSON.stringify(bombaSales));
+        return bombaSales;
       }
     });
   }

@@ -21,6 +21,8 @@ export default function Summary({ sales }) {
     const texto = encodeURIComponent(mensagem);
     const url = `https://wa.me/5585996260929?text=${texto}`;
     window.open(url, "_blank");
+    localStorage.removeItem("sales");
+    window.location.reload()
   }
 
   useEffect(() => {
