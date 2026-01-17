@@ -14,12 +14,11 @@ function App() {
   const items = useMyStore();
   const localSales = localStorage.getItem("sales");
   const [isLogged, setIsLogged] = useState(
-    localStorage.getItem("isLogged") === "true"
+    localStorage.getItem("isLogged") === "true",
   );
   const [sales, setSales] = useState(
-    localSales ? JSON.parse(localSales) : { bombamix: [], delivery: [] }
+    localSales ? JSON.parse(localSales) : items.sales,
   );
-
   function handleSetSell(order, quant) {
     if (order.copo.id2) {
       items.removeComboGlass(order.copo.id, order.copo.id2, quant);

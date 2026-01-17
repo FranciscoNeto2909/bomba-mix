@@ -14,11 +14,11 @@ export default function Sell({ handleSetSell }) {
     size: null,
     price: null,
   });
+
   const [comboIds, setComboIds] = useState({ size: null, size2: null });
   const [flavor, setFlavor] = useState({ id: null, name: null });
   const [top, setTop] = useState({ id: null, name: null });
   const [acomp, setAcomp] = useState({ id: null, name: null });
-  const [whey, setWhey] = useState({ id: null, name: null });
   const [combo, setCombo] = useState({ id: null, name: null, price: null });
   const [pickUp, setPickUp] = useState({ id: 1, value: "Bombamix" });
   const [payment, setPayment] = useState({ id: 1, value: "Dinheiro" });
@@ -54,14 +54,6 @@ export default function Sell({ handleSetSell }) {
     }
   }
 
-  function handleSelectWhey(i, item) {
-    if (whey.id === i) {
-      setWhey({ id: null, name: null });
-    } else {
-      setWhey({ id: i, name: item.name });
-    }
-  }
-
   function handleSelectCombo(i, item) {
     if (combo.id === i) {
       setCombo({ id: null, name: null, price: null });
@@ -72,7 +64,6 @@ export default function Sell({ handleSetSell }) {
       setFlavor({ id: null, name: null });
       setTop({ id: null, name: null });
       setAcomp({ id: null, name: null });
-      setWhey({ id: null, name: null });
     }
   }
 
@@ -97,7 +88,7 @@ export default function Sell({ handleSetSell }) {
           pagamento: payment.value,
           valor: `R$:${comboPrice.toFixed(2).replace(".", ",")}`,
         },
-        glassQuant
+        glassQuant,
       );
       setCombo({ id: null, name: null, price: null });
       setPayment({ id: 1, value: "Dinheiro" });
@@ -113,17 +104,15 @@ export default function Sell({ handleSetSell }) {
           copo: glass,
           cobertura: top.name ?? "Sem cobertura",
           acompanha: acomp.name ?? "Sem acompanhamento",
-          whey: whey.name ?? "Sem whey",
           pagamento: payment.value,
           valor: `R$:${glassPrice.toFixed(2).replace(".", ",")}`,
         },
-        glassQuant
+        glassQuant,
       );
       setGlass({ id: null, size: null, price: null });
       setFlavor({ id: null, name: null });
       setTop({ id: null, name: null });
       setAcomp({ id: null, name: null });
-      setWhey({ id: null, name: null });
       setPayment({ id: 1, value: "Dinheiro" });
       setGlassQuant(1);
       setPickUp({ id: 1, value: "Bombamix" });
@@ -139,7 +128,6 @@ export default function Sell({ handleSetSell }) {
     setFlavor({ id: null, name: null });
     setTop({ id: null, name: null });
     setAcomp({ id: null, name: null });
-    setWhey({ id: null, name: null });
     setDelivery(false);
     setPayment({ id: 1, value: "Dinheiro" });
     setGlassQuant(1);
@@ -232,24 +220,6 @@ export default function Sell({ handleSetSell }) {
                 alt=""
               />
               <p className="acommpaniment-name">{item.name}</p>
-            </button>
-          </div>
-        ))}
-      </div>
-      <h2 className="sell-title">Whey</h2>
-      <div className="sell-whey">
-        {items.wheys.map((item, i) => (
-          <div className="whey" key={i}>
-            <button
-              onClick={() => handleSelectWhey(i, item)}
-              className="whey-button"
-            >
-              <img
-                src={item.img}
-                className={`whey-img ${whey.id === i ? "whey--selected" : ""}`}
-                alt=""
-              />
-              <p className="whey-name">{item.name}</p>
             </button>
           </div>
         ))}

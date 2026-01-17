@@ -38,11 +38,8 @@ export const initialFlavors = [
   { id: 9, name: "Maracujá", img: maracuja },
   { id: 10, name: "Morango", img: morango },
   { id: 11, name: "Ninho com Ovomaltine", img: ninho },
-];
-
-export const initialWheys = [
-  { id: 1, name: "Whey com Chocolate", img: wheyC },
-  { id: 2, name: "Whey com Morango", img: wheyM },
+  { id: 12, name: "Whey com Chocolate", img: wheyC },
+  { id: 13, name: "Whey com Morango", img: wheyM },
 ];
 
 export const initialToppings = [
@@ -63,3 +60,5 @@ export const initialCombos = [
   { id: 3, size: 3, size2: 0, name: "Power", img: power, price: 20 },
   { id: 4, size: 3, size2: 1, name: "BombaMix", img: bomba, price: 21 },
 ];
+
+export const initialSales = { bombamix: [], delivery: [] };

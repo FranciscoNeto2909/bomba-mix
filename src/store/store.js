@@ -4,26 +4,20 @@ import {
   initialCombos,
   initialFlavors,
   initialGlasses,
+  initialSales,
   initialToppings,
-  initialWheys,
 } from "../data/data";
 
-const loadFromStorage = key => {
-  try {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
-  } catch {
-    return null;
-  }
-};
+const localGlasses = JSON.parse(localStorage.getItem("glasses"));
+const localCombos = JSON.parse(localStorage.getItem("combos"));
 
 export const useMyStore = create((set, get) => ({
-  glasses: loadFromStorage("glasses") ?? [...initialGlasses],
+  glasses: localGlasses ? localGlasses : [...initialGlasses],
   flavors: [...initialFlavors],
   toppings: [...initialToppings],
   accompaniments: [...initialAccompaniments],
-  wheys: [...initialWheys],
-  combos: [...initialCombos],
+  combos: localCombos ? localCombos : [...initialCombos],
+  sales: initialSales,
   message: {
     hasMsg: false,
     msg: "",
@@ -31,22 +25,18 @@ export const useMyStore = create((set, get) => ({
   addGlass: (id, quant = 1) =>
     set(state => {
       const glasses = state.glasses.map(item =>
-        item.id === id ? { ...item, quant: item.quant + quant } : item
+        item.id === id ? { ...item, quant: item.quant + quant } : item,
       );
-
       localStorage.setItem("glasses", JSON.stringify(glasses));
-
       return { glasses };
     }),
 
   removeGlass: (id, quant) =>
     set(state => {
       const glasses = state.glasses.map(item =>
-        item.id === id ? { ...item, quant: item.quant - quant } : item
+        item.id === id ? { ...item, quant: item.quant - quant } : item,
       );
-
       localStorage.setItem("glasses", JSON.stringify(glasses));
-
       return { glasses };
     }),
 
@@ -54,10 +44,10 @@ export const useMyStore = create((set, get) => ({
     set(state => {
       const glasses = state.glasses
         .map(item =>
-          item.id === size ? { ...item, quant: item.quant - quant } : item
+          item.id === size ? { ...item, quant: item.quant - quant } : item,
         )
         .map(item =>
-          item.id === size2 ? { ...item, quant: item.quant - quant } : item
+          item.id === size2 ? { ...item, quant: item.quant - quant } : item,
         );
 
       localStorage.setItem("glasses", JSON.stringify(glasses));
@@ -80,11 +70,18 @@ export const useMyStore = create((set, get) => ({
   updateItem: (key, id, data) =>
     set(state => {
       if (!Array.isArray(state[key])) return {};
-      return {
+      const newState = {
         [key]: state[key].map(item =>
-          item.id === id ? { ...item, ...data } : item
+          item.id === id ? { ...item, ...data } : item,
         ),
       };
+      if (key === "glasses") {
+        localStorage.setItem("glasses", JSON.stringify(newState.glasses));
+      }
+      if (key === "combos") {
+        localStorage.setItem("combos", JSON.stringify(newState.combos));
+      }
+      return newState;
     }),
 
   setMessage: msg => {
