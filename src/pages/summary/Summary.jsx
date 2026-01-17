@@ -38,6 +38,12 @@ export default function Summary() {
   function handleRemoveOrder() {
     items.removeOrder(order);
     items.setMessage("Pedido removido");
+    console.log(order);
+    if (order.pedido.includes("Combo")) {
+      items.addComboGlass(order.copo.id, order.copo.id2, order.quantidade);
+    } else {
+      items.addGlass(order.copo.id, order.quantidade);
+    }
     handleCloseModal();
   }
 

@@ -24,14 +24,14 @@ export const useMyStore = create(
         msg: "",
       },
 
-      addGlass: (id, quant = 1) =>
+      addGlass: (id, quant) =>
         set(state => ({
           glasses: state.glasses.map(item =>
             item.id === id ? { ...item, quant: item.quant + quant } : item,
           ),
         })),
 
-      removeGlass: (id, quant = 1) =>
+      removeGlass: (id, quant) =>
         set(state => ({
           glasses: state.glasses.map(item =>
             item.id === id ? { ...item, quant: item.quant - quant } : item,
@@ -43,6 +43,14 @@ export const useMyStore = create(
           glasses: state.glasses.map(item =>
             item.id === size1 || item.id === size2
               ? { ...item, quant: item.quant - quant }
+              : item,
+          ),
+        })),
+      addComboGlass: (size1, size2, quant) =>
+        set(state => ({
+          glasses: state.glasses.map(item =>
+            item.id === size1 || item.id === size2
+              ? { ...item, quant: item.quant + quant }
               : item,
           ),
         })),
@@ -69,7 +77,6 @@ export const useMyStore = create(
             [key]: [...state[key], item],
           };
         }),
-
 
       updateItem: (key, id, data) =>
         set(state => {
