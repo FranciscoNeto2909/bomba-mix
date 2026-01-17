@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import "./summary.css";
+import { AiOutlineClose } from "react-icons/ai";
+import { useMyStore } from "../../store/store";
 
-export default function Summary({ sales }) {
+export default function Summary() {
+  const items = useMyStore();
   const [bombamix, setBombamix] = useState(0);
   const [delivery, setDelivery] = useState(0);
-
+  const [order, setOrder] = useState();
+  const [modalOpened, setModalOpened] = useState(false);
   const dataHoje = new Date().toLocaleDateString("pt-BR");
 
   const mensagem = `
@@ -21,32 +25,70 @@ export default function Summary({ sales }) {
     const texto = encodeURIComponent(mensagem);
     const url = `https://wa.me/5585996260929?text=${texto}`;
     window.open(url, "_blank");
-    localStorage.removeItem("sales")
+    localStorage.removeItem("sales");
     window.location.reload();
+  }
+
+  function handleOpenModal(order) {
+    setModalOpened(true);
+    setOrder(order);
+    document.body.style.overflow = "hidden";
+  }
+
+  function handleRemoveOrder() {
+    items.removeOrder(order);
+    items.setMessage("Pedido removido");
+    handleCloseModal();
+  }
+
+  function handleCloseModal() {
+    setModalOpened(false);
+    document.body.style.overflow = "auto";
   }
 
   useEffect(() => {
     setBombamix(
-      sales.bombamix.reduce((sum, item) => {
+      items.sales.bombamix.reduce((sum, item) => {
         const valorNumerico = Number(
-          item.valor.replace("R$:", "").replace(",", ".")
+          item.valor.replace("R$:", "").replace(",", "."),
         );
         return sum + valorNumerico;
-      }, 0)
+      }, 0),
     );
 
     setDelivery(
-      sales.delivery.reduce((sum, item) => {
+      items.sales.delivery.reduce((sum, item) => {
         const valorNumerico = Number(
-          item.valor.replace("R$:", "").replace(",", ".")
+          item.valor.replace("R$:", "").replace(",", "."),
         );
         return sum + valorNumerico;
-      }, 0)
+      }, 0),
     );
-  }, [sales]);
+  }, [items.sales]);
 
   return (
     <div className="summary">
+      {modalOpened && (
+        <div className="sumary-modal">
+          <div className="modal">
+            <p className="modal-text">Remover esse pedido?</p>
+            <div className="modal-buttons">
+              <button
+                className="modal-button button"
+                onClick={handleRemoveOrder}
+              >
+                Sim
+              </button>
+              <button
+                className="modal-button button"
+                onClick={handleCloseModal}
+              >
+                Não
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="summary-title">
         <h2>Fechamento</h2>
       </div>
@@ -59,18 +101,26 @@ export default function Summary({ sales }) {
           <p className="item-value">Valor</p>
         </div>
         <div className="bombamix-sales">
-          {sales.bombamix.map((item, i) => (
+          {items.sales.bombamix.map((item, i) => (
             <div className="sales-item" key={i}>
               <p className="item-quant">{item.quantidade}</p>
               <p className="item-name">{item.pedido}</p>
               <p className="item-payment">{item.pagamento}</p>
               <p className="item-value">{item.valor}</p>
+              <button
+                className="item-close"
+                onClick={() => handleOpenModal(item)}
+              >
+                <AiOutlineClose size={18} />
+              </button>
             </div>
           ))}
-          {sales.bombamix.length > 0 && (
+          {items.sales.bombamix.length > 0 && (
             <div className="sales-sum">
               <p className="sales-sum-text">Total:</p>
-              <div className="sales-sum-text">R${bombamix.toFixed(2).replace(".", ",")}</div>
+              <div className="sales-sum-text">
+                R${bombamix.toFixed(2).replace(".", ",")}
+              </div>
             </div>
           )}
         </div>
@@ -84,18 +134,26 @@ export default function Summary({ sales }) {
           <p className="item-value">Valor</p>
         </div>
         <div className="delivery-sales">
-          {sales.delivery.map((item, i) => (
+          {items.sales.delivery.map((item, i) => (
             <div className="sales-item" key={i}>
               <p className="item-quant">{item.quantidade}</p>
               <p className="item-name">{item.pedido}</p>
               <p className="item-payment">{item.pagamento}</p>
               <p className="item-value">{item.valor}</p>
+              <button
+                className="item-close"
+                onClick={() => handleOpenModal(item)}
+              >
+                <AiOutlineClose size={18} />
+              </button>
             </div>
           ))}
-          {sales.delivery.length > 0 && (
+          {items.sales.delivery.length > 0 && (
             <div className="sales-sum">
               <p className="sales-sum-text">Total:</p>
-              <div className="sales-sum-text">R${delivery.toFixed(2).replace(".", ",")}</div>
+              <div className="sales-sum-text">
+                R${delivery.toFixed(2).replace(".", ",")}
+              </div>
             </div>
           )}
         </div>

@@ -69,6 +69,8 @@ export default function Sell({ handleSetSell }) {
 
   function handleSetOrder() {
     const isDelivery = pickUp.id !== 1;
+    const saleId = Math.random().toString(36).substring(2, 10);
+
     const glassPrice =
       payment.id === 4
         ? glass.price * glassQuant + 0.5
@@ -81,6 +83,7 @@ export default function Sell({ handleSetSell }) {
     if (combo.id !== null) {
       handleSetSell(
         {
+          id: saleId,
           pedido: `Combo ${combo.name}`,
           quantidade: glassQuant,
           delivery: isDelivery,
@@ -98,6 +101,7 @@ export default function Sell({ handleSetSell }) {
     } else if (glass.id !== null && flavor.id !== null) {
       handleSetSell(
         {
+          id: saleId,
           pedido: `${flavor.name}`,
           quantidade: glassQuant,
           delivery: isDelivery,
@@ -240,6 +244,9 @@ export default function Sell({ handleSetSell }) {
                 alt=""
               />
               <p className="combo-name">{item.name}</p>
+              <p className="combo-name">
+                R$:{Number(item.price).toFixed(2).replace(".", ",")}
+              </p>
             </button>
           </div>
         ))}

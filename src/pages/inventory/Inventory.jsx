@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./inventory.css";
-import { AiOutlineCheck} from "react-icons/ai";
+import { AiOutlineCheck } from "react-icons/ai";
 import { useMyStore } from "../../store/store";
 
 export default function Inventory() {
@@ -11,7 +11,7 @@ export default function Inventory() {
   const [comboPrice, setComboPrice] = useState({});
 
   function handleChangeGlassesQuant() {
-    items.addGlass(glassId,Number(glass));
+    items.addGlass(glassId, Number(glass));
     items.setMessage("Quantidade de copos atualizada");
   }
 

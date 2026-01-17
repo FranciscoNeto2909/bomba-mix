@@ -33,7 +33,7 @@ export default function Wellcome() {
             </label>
             <input
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={e => setName(e.target.value.trim())}
               className="form-item-text"
               type="text"
             />
@@ -44,7 +44,7 @@ export default function Wellcome() {
             </label>
             <input
               value={pass}
-              onChange={e => setPass(e.target.value)}
+              onChange={e => setPass(e.target.value.trim())}
               className="form-item-text"
               type="text"
             />

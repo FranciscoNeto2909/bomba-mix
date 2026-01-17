@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import {
   initialAccompaniments,
   initialCombos,
@@ -8,91 +9,106 @@ import {
   initialToppings,
 } from "../data/data";
 
-const localGlasses = JSON.parse(localStorage.getItem("glasses"));
-const localCombos = JSON.parse(localStorage.getItem("combos"));
+export const useMyStore = create(
+  persist(
+    (set, get) => ({
+      glasses: [...initialGlasses],
+      flavors: [...initialFlavors],
+      toppings: [...initialToppings],
+      accompaniments: [...initialAccompaniments],
+      combos: [...initialCombos],
+      sales: initialSales,
 
-export const useMyStore = create((set, get) => ({
-  glasses: localGlasses ? localGlasses : [...initialGlasses],
-  flavors: [...initialFlavors],
-  toppings: [...initialToppings],
-  accompaniments: [...initialAccompaniments],
-  combos: localCombos ? localCombos : [...initialCombos],
-  sales: initialSales,
-  message: {
-    hasMsg: false,
-    msg: "",
-  },
-  addGlass: (id, quant = 1) =>
-    set(state => {
-      const glasses = state.glasses.map(item =>
-        item.id === id ? { ...item, quant: item.quant + quant } : item,
-      );
-      localStorage.setItem("glasses", JSON.stringify(glasses));
-      return { glasses };
+      message: {
+        hasMsg: false,
+        msg: "",
+      },
+
+      addGlass: (id, quant = 1) =>
+        set(state => ({
+          glasses: state.glasses.map(item =>
+            item.id === id ? { ...item, quant: item.quant + quant } : item,
+          ),
+        })),
+
+      removeGlass: (id, quant = 1) =>
+        set(state => ({
+          glasses: state.glasses.map(item =>
+            item.id === id ? { ...item, quant: item.quant - quant } : item,
+          ),
+        })),
+
+      removeComboGlass: (size1, size2, quant) =>
+        set(state => ({
+          glasses: state.glasses.map(item =>
+            item.id === size1 || item.id === size2
+              ? { ...item, quant: item.quant - quant }
+              : item,
+          ),
+        })),
+
+      addItem: (key, item) =>
+        set(state => {
+          if (key === "sales") {
+            return {
+              sales: {
+                ...state.sales,
+                delivery: item.delivery
+                  ? [...state.sales.delivery, item]
+                  : state.sales.delivery,
+                bombamix: !item.delivery
+                  ? [...state.sales.bombamix, item]
+                  : state.sales.bombamix,
+              },
+            };
+          }
+
+          if (!Array.isArray(state[key])) return state;
+
+          return {
+            [key]: [...state[key], item],
+          };
+        }),
+
+
+      updateItem: (key, id, data) =>
+        set(state => {
+          if (!Array.isArray(state[key])) return state;
+          return {
+            [key]: state[key].map(item =>
+              item.id === id ? { ...item, ...data } : item,
+            ),
+          };
+        }),
+
+      removeOrder: order =>
+        set(state => ({
+          sales: {
+            delivery: order.delivery
+              ? state.sales.delivery.filter(item => item.id !== order.id)
+              : state.sales.delivery,
+
+            bombamix: !order.delivery
+              ? state.sales.bombamix.filter(item => item.id !== order.id)
+              : state.sales.bombamix,
+          },
+        })),
+
+      setMessage: msg => {
+        set({ message: { hasMsg: true, msg } });
+
+        setTimeout(() => {
+          set({ message: { hasMsg: false, msg: "" } });
+        }, 2000);
+      },
     }),
-
-  removeGlass: (id, quant) =>
-    set(state => {
-      const glasses = state.glasses.map(item =>
-        item.id === id ? { ...item, quant: item.quant - quant } : item,
-      );
-      localStorage.setItem("glasses", JSON.stringify(glasses));
-      return { glasses };
-    }),
-
-  removeComboGlass: (size, size2, quant) =>
-    set(state => {
-      const glasses = state.glasses
-        .map(item =>
-          item.id === size ? { ...item, quant: item.quant - quant } : item,
-        )
-        .map(item =>
-          item.id === size2 ? { ...item, quant: item.quant - quant } : item,
-        );
-
-      localStorage.setItem("glasses", JSON.stringify(glasses));
-
-      return { glasses };
-    }),
-
-  addItem: (key, item) =>
-    set(state => {
-      if (!Array.isArray(state[key])) return {};
-      return { [key]: [...state[key], item] };
-    }),
-
-  removeItem: (key, id) =>
-    set(state => {
-      if (!Array.isArray(state[key])) return {};
-      return { [key]: state[key].filter(item => item.id !== id) };
-    }),
-
-  updateItem: (key, id, data) =>
-    set(state => {
-      if (!Array.isArray(state[key])) return {};
-      const newState = {
-        [key]: state[key].map(item =>
-          item.id === id ? { ...item, ...data } : item,
-        ),
-      };
-      if (key === "glasses") {
-        localStorage.setItem("glasses", JSON.stringify(newState.glasses));
-      }
-      if (key === "combos") {
-        localStorage.setItem("combos", JSON.stringify(newState.combos));
-      }
-      return newState;
-    }),
-
-  setMessage: msg => {
-    set({
-      message: { hasMsg: true, msg },
-    });
-
-    setTimeout(() => {
-      set({
-        message: { hasMsg: false, msg: "" },
-      });
-    }, 2000);
-  },
-}));
+    {
+      name: "my-store",
+      partialize: state => ({
+        glasses: state.glasses,
+        combos: state.combos,
+        sales: state.sales,
+      }),
+    },
+  ),
+);

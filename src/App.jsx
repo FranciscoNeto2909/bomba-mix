@@ -16,32 +16,13 @@ function App() {
   const [isLogged, setIsLogged] = useState(
     localStorage.getItem("isLogged") === "true",
   );
-  const [sales, setSales] = useState(
-    localSales ? JSON.parse(localSales) : items.sales,
-  );
   function handleSetSell(order, quant) {
     if (order.copo.id2) {
       items.removeComboGlass(order.copo.id, order.copo.id2, quant);
     } else {
       items.removeGlass(order.copo.id, quant);
     }
-    setSales(prev => {
-      if (order.delivery) {
-        const deliverySales = {
-          ...prev,
-          delivery: [...prev.delivery, order],
-        };
-        localStorage.setItem("sales", JSON.stringify(deliverySales));
-        return deliverySales;
-      } else {
-        const bombaSales = {
-          ...prev,
-          bombamix: [...prev.bombamix, order],
-        };
-        localStorage.setItem("sales", JSON.stringify(bombaSales));
-        return bombaSales;
-      }
-    });
+    items.addItem("sales", order);
   }
 
   function handleLogout() {
@@ -74,8 +55,8 @@ function App() {
       )}
       <Routes>
         <Route
-          path="fechamento"
-          element={isLogged ? <Summary sales={sales} /> : <Wellcome />}
+          path="/fechamento"
+          element={isLogged ? <Summary/> : <Wellcome />}
         />
         <Route
           path="/"
@@ -84,7 +65,13 @@ function App() {
           }
         />
         <Route
-          path="estoque"
+          path="/*"
+          element={
+            isLogged ? <Sell handleSetSell={handleSetSell} /> : <Wellcome />
+          }
+        />
+        <Route
+          path="/estoque"
           element={isLogged ? <Inventory /> : <Wellcome />}
         />
       </Routes>
