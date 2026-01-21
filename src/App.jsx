@@ -1,4 +1,3 @@
-import Nav from "./components/nav/Nav";
 import Menu from "./components/menu/Menu";
 import logo from "./assets/logo.png";
 import "./App.css";
@@ -12,7 +11,6 @@ import Wellcome from "./pages/wellcome/Wellcome";
 
 function App() {
   const items = useMyStore();
-  const localSales = localStorage.getItem("sales");
   const [isLogged, setIsLogged] = useState(
     localStorage.getItem("isLogged") === "true",
   );
@@ -41,7 +39,6 @@ function App() {
           <img className="logo-img" src={logo} alt="" />
         </div>
         <div className="logo-name">BOMBAMIX SGA</div>
-        {window.innerWidth > 768 && <Nav />}
         <div>
           {isLogged && (
             <button className="logo-button" onClick={handleLogout}>
@@ -56,7 +53,7 @@ function App() {
       <Routes>
         <Route
           path="/fechamento"
-          element={isLogged ? <Summary/> : <Wellcome />}
+          element={isLogged ? <Summary /> : <Wellcome />}
         />
         <Route
           path="/"

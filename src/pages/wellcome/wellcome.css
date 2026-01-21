@@ -4,14 +4,14 @@
 
 .wellcome-title {
   color: var(--orange);
-  font-size: 32px;
+  font-size: 42px;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
 
 .wellcome-desc {
   color: var(--orange);
-  font-size: 14px;
+  font-size: 18px;
   text-align: center;
 }
 
@@ -24,16 +24,15 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 24px;
-  border-radius: 12px;
+  gap: 32px;
   padding: 24px 0;
 }
 
 .form-item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  width: 300px;
+  gap: 8px;
+  width: 500px;
 }
 
 .form-item-label {
@@ -53,8 +52,30 @@
   color: #fff;
   font-size: 18px;
   font-weight: bold;
-  padding: 10px;
+  padding: 14px;
   border-radius: 4px;
   border: none;
-  width: 300px;
+  width: 500px;
+}
+
+@media (max-width: 525px) {
+  .wellcome-title {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .wellcome-desc {
+    font-size: 14px;
+  }
+  .form {
+    gap: 24px;
+  }
+  .form-item {
+    gap: 4px;
+    width: 300px;
+  }
+  .form-item-button {
+    width: 300px;
+    padding: 10px;
+  }
 }

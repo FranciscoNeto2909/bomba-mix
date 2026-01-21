@@ -1,5 +1,6 @@
 .inventory {
-  margin: 100px 14px;
+  max-width: 768px;
+  margin: 100px auto;
 }
 
 .addglass-title,
@@ -115,4 +116,10 @@
 
 .newprice-delete-button {
   background-color: var(--red);
+}
+
+@media (max-width: 525px) {
+  .inventory {
+    margin: 100px 14px;
+  }
 }

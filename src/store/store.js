@@ -100,6 +100,10 @@ export const useMyStore = create(
               : state.sales.bombamix,
           },
         })),
+      clearSales: () =>
+        set({
+          sales: initialSales,
+        }),
 
       setMessage: msg => {
         set({ message: { hasMsg: true, msg } });

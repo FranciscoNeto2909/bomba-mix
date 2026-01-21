@@ -1,8 +1,11 @@
 .menu {
   width: 100%;
+  max-width: 768px;
   position: fixed;
   background-color: transparent;
   bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 24px;
   z-index: 1;
 }

@@ -21,12 +21,10 @@ export default function Summary() {
 `;
 
   function handleCloseBox() {
-    console.log(mensagem);
     const texto = encodeURIComponent(mensagem);
     const url = `https://wa.me/5585996260929?text=${texto}`;
     window.open(url, "_blank");
-    localStorage.removeItem("sales");
-    window.location.reload();
+    items.clearSales();
   }
 
   function handleOpenModal(order) {

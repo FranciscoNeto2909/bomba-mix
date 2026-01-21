@@ -11,8 +11,12 @@ export default function Inventory() {
   const [comboPrice, setComboPrice] = useState({});
 
   function handleChangeGlassesQuant() {
-    items.addGlass(glassId, Number(glass));
-    items.setMessage("Quantidade de copos atualizada");
+    if (glassId === "") {
+      items.setMessage("Selecione um tamanho");
+    } else {
+      items.addGlass(glassId, Number(glass));
+      items.setMessage("Quantidade de copos atualizada");
+    }
   }
 
   function handleChangeGlassPrice(glass) {
@@ -20,6 +24,8 @@ export default function Inventory() {
       items.updateItem("glasses", glass.id, { price: glassPrice[glass.id] });
       setGlassPrice({ ...glassPrice, [glass.id]: "" });
       items.setMessage("Preço do copo atualizado");
+    } else {
+      items.setMessage("Digite um valor");
     }
   }
 
@@ -28,6 +34,8 @@ export default function Inventory() {
       items.updateItem("combos", combo.id, { price: comboPrice[combo.id] });
       setComboPrice({ ...comboPrice, [combo.id]: "" });
       items.setMessage("Preço do combo atualizado");
+    } else {
+      items.setMessage("Digite um valor");
     }
   }
 

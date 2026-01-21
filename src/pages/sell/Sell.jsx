@@ -122,7 +122,11 @@ export default function Sell({ handleSetSell }) {
       setPickUp({ id: 1, value: "Bombamix" });
       items.setMessage("Vitamina adicionada");
     } else {
-      items.setMessage("Selecione uma vitamina");
+      items.setMessage("Selecione um copo e vitamina");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   }
 
