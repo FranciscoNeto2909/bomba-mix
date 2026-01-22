@@ -100,10 +100,12 @@ export const useMyStore = create(
               : state.sales.bombamix,
           },
         })),
-      clearSales: () =>
+      clearSales: () => {
         set({
           sales: initialSales,
-        }),
+        });
+        localStorage.removeItem("sales");
+      },
 
       setMessage: msg => {
         set({ message: { hasMsg: true, msg } });

@@ -23,7 +23,7 @@ export default function Summary() {
   function handleCloseBox() {
     const texto = encodeURIComponent(mensagem);
     const url = `https://wa.me/5585996260929?text=${texto}`;
-    window.open(url, "_blank");
+    window.open(url, "");
     items.clearSales();
   }
 
